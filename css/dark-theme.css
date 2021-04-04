@@ -52,6 +52,11 @@ pre {
   color: var(--high-emphasis);
 }
 
+.article-grid > div{
+  background-color: var(--surface-03dp);
+  box-shadow: var(--box-shadow);
+}
+
 article > canvas {
   background-color: var(--surface-03dp);
   box-shadow: var(--box-shadow);

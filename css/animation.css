@@ -30,16 +30,6 @@ article.active {
   opacity: 1;
 }
 
-.toggle-btn.active::after {
-  content: "▲ 접기";
-}
-
-pre.active {
-  visibility: visible;
-  height: 70vh;
-}
-
-
 @-webkit-keyframes fadeInFromNone {
   0% {
     display: none;
