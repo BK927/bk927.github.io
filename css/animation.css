@@ -1,4 +1,8 @@
-body * {
+a {
+  transition: all 0.5s ease-out;
+}
+
+.filebox {
   transition: all 0.3s ease-out;
 }
 
@@ -12,8 +16,12 @@ header.active {
   overflow: auto;
 }
 
-.container {
-  transition: all 1s ease-out;;
+.container * {
+  transition: all 1s ease-out;
+}
+
+.chart-container * {
+  transition: none;
 }
 
 article.loading {

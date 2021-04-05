@@ -115,8 +115,12 @@ article > h3 {
   margin-bottom: 15px;
 }
 
-article > canvas {
-  width: 100%;
+.chart-container {
+  position: relative;
+  padding: 8px;
+  width: 100% - 16px;
+  height: 30vw;
+  min-height: 300px;
   border-radius: 5px;
 }
 

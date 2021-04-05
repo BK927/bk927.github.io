@@ -57,7 +57,7 @@ pre {
   box-shadow: var(--box-shadow);
 }
 
-article > canvas {
+.chart-container {
   background-color: var(--surface-03dp);
   box-shadow: var(--box-shadow);
 }

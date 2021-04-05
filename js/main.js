@@ -16,7 +16,7 @@ function readSingleFile(e) {
     setArticlesVisibility(true);
     displayHash(scriptData.getMd5Hash());
     displayPeriod(scriptData.getBeginDate(), scriptData.getEndDate());
-    displayChattingStatistics(scriptData.getBeginDate(), scriptData.getEndDate(), scriptData.numberOfLines)
+    displayChattingStatistics(scriptData.getBeginDate(), scriptData.getEndDate(), scriptData.numberOfLines);
     displayMiscellaneous(
       scriptData.getPhotoFrequency(),
       scriptData.getVideoFrequency(),
@@ -61,16 +61,16 @@ function readSingleFile(e) {
     node.textContent = hash;
   };
 
-  const displayChattingStatistics = function(beginDate, endDate, numberOfLine){
+  const displayChattingStatistics = function (beginDate, endDate, numberOfLine) {
     const gapTime = endDate.getTime() - beginDate.getTime();
     const gapDay = Math.floor(gapTime / (1000 * 60 * 60 * 24));
-    const parentNode = document.querySelector('#chatting-statistics');
+    const parentNode = document.querySelector("#chatting-statistics");
 
     {
       const divider = document.createElement("div");
       const title = document.createElement("h4");
       const content = document.createElement("h5");
-      title.textContent = '전체 채팅 수';
+      title.textContent = "전체 채팅 수";
       content.textContent = String(numberOfLine);
       divider.append(title);
       divider.append(content);
@@ -81,13 +81,12 @@ function readSingleFile(e) {
       const divider = document.createElement("div");
       const title = document.createElement("h4");
       const content = document.createElement("h5");
-      title.textContent = '하루 평균 채팅 수';
-      content.textContent = String(Math.floor(numberOfLine/gapDay));
+      title.textContent = "하루 평균 채팅 수";
+      content.textContent = String(Math.floor(numberOfLine / gapDay));
       divider.append(title);
       divider.append(content);
       parentNode.append(divider);
     }
-    
   };
 
   const displayMiscellaneous = function (numberOfPhoto, numberOfVideo, numberOfEmoji, numberOfYoutube) {
@@ -96,7 +95,7 @@ function readSingleFile(e) {
       ["사진 수", numberOfPhoto],
       ["비디오 수", numberOfVideo],
       ["이모티콘 수", numberOfEmoji],
-      ["유튜브 링크 수", numberOfYoutube]
+      ["유튜브 링크 수", numberOfYoutube],
     ];
 
     arr.forEach((element) => {
@@ -198,5 +197,6 @@ function readSingleFile(e) {
 }
 
 (function () {
+
   document.getElementById("file-input").addEventListener("change", readSingleFile, false);
 })();

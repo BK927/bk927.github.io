@@ -35,8 +35,7 @@ export function createBarChart(domNode, label, labels, values) {
       ],
     },
     options: {
-      responsive: false,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
       legend: {
         labels: {
           fontColor: "white",
