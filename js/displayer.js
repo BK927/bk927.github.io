@@ -50,7 +50,7 @@ export function createDisplayer() {
     switchLoadingToActive(node);
   };
 
-  const displayChattingStatistics = async function (logAnalyser) {
+  const displayChattingStatistics = function (logAnalyser) {
     const beginDate = logAnalyser.getBeginDate();
     const endDate = logAnalyser.getEndDate();
     const numberOfLine = logAnalyser.numberOfLines;
@@ -82,7 +82,7 @@ export function createDisplayer() {
     }
   };
 
-  const displayMiscellaneous = async function (logAnalyser, localCacher) {
+  const displayMiscellaneous = function (logAnalyser) {
     let numberOfPhoto = tryLoadFromCacheWrapper(logAnalyser.calcPhotoFrequency);
     let numberOfVideo = tryLoadFromCacheWrapper(logAnalyser.calcVideoFrequency);
     let numberOfEmoji = tryLoadFromCacheWrapper(logAnalyser.calcEmojiFrequency);
@@ -131,7 +131,7 @@ export function createDisplayer() {
     node.textContent = convertDate(beginDate) + " ~ " + convertDate(endDate);
   };
 
-  const displayTypingRanking = async function (logAnalyser) {
+  const displayTypingRanking = function (logAnalyser) {
     const typingRanking = tryLoadFromCacheWrapper(logAnalyser.calcTypingRanking);
     const chartNode = document.querySelector("#typing-chart");
     const textNode = document.querySelector("#typing-ranking");
@@ -141,7 +141,7 @@ export function createDisplayer() {
     localCacher.cacheData(logAnalyser.calcTypingRanking.name, typingRanking);
   };
 
-  const displayNameArticle = async function (logAnalyser) {
+  const displayNameArticle = function (logAnalyser) {
     const nameFrequency = tryLoadFromCacheWrapper(logAnalyser.calcNameFrequency);
     const chartNode = document.querySelector("#name-chart");
     const textNode = document.querySelector("#name-ranking");
@@ -151,7 +151,7 @@ export function createDisplayer() {
     localCacher.cacheData(logAnalyser.calcNameFrequency.name, nameFrequency);
   };
 
-  const displayDayArticle = async function (logAnalyser) {
+  const displayDayArticle = function (logAnalyser) {
     const dayFrequency = tryLoadFromCacheWrapper(logAnalyser.calcDayFrequency);
     const chartNode = document.querySelector("#day-chart");
     const textNode = document.querySelector("#day-ranking");
@@ -162,7 +162,7 @@ export function createDisplayer() {
     localCacher.cacheData(logAnalyser.calcDayFrequency.name, dayFrequency);
   };
 
-  const displayHourArticle = async function (logAnalyser) {
+  const displayHourArticle = function (logAnalyser) {
     const hourFrequency = tryLoadFromCacheWrapper(logAnalyser.calcHourFrequency);
     const chartNode = document.querySelector("#time-chart");
     const textNode = document.querySelector("#time-ranking");
@@ -176,7 +176,7 @@ export function createDisplayer() {
     showRankText(textNode, strAdded);
   };
 
-  const drawChart = async function (domNode, frquencyList) {
+  const drawChart = function (domNode, frquencyList) {
     const labels = [];
     const values = [];
     frquencyList.forEach((element) => {
@@ -187,7 +187,7 @@ export function createDisplayer() {
     return Chart.createBarChart(domNode, "횟수", labels, values);
   };
 
-  const showRankText = async function (domNode, list, cutline = -1) {
+  const showRankText = function (domNode, list, cutline = -1) {
     let listSize = 0;
     const largestNum = list[0][1];
     list.forEach((element) => {
@@ -214,7 +214,7 @@ export function createDisplayer() {
   //Property
   let logAnalyser;
   let localCacher;
-  const cachableFunc = [
+  const nonBlockingFunc = [
     displayPeriod,
     displayChattingStatistics,
     displayMiscellaneous,
@@ -233,8 +233,8 @@ export function createDisplayer() {
       displayHash(logAnalyser.getMd5Hash());
       localCacher = createLocalStorageCacher(logAnalyser.getMd5Hash());
 
-      cachableFunc.forEach((func) => {
-        func(logAnalyser);
+      nonBlockingFunc.forEach((func) => {
+        setTimeout(func(logAnalyser), 0);
       });
     },
 
