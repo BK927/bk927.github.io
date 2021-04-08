@@ -167,16 +167,13 @@ export function createDisplayer() {
     const chartNode = document.querySelector("#time-chart");
     const textNode = document.querySelector("#time-ranking");
     const strAdded = [...hourFrequency];
+    localCacher.cacheData(logAnalyser.calcHourFrequency.name, hourFrequency);
     for (let i = 0; i < strAdded.length; i++) {
       strAdded[i][0] += "시";
     }
     const top7 = strAdded.slice(0, 7);
     const chart = drawChart(chartNode, top7);
     showRankText(textNode, strAdded);
-
-    if(!localCacher.isCacheAvailable(logAnalyser.calcHourFrequency.name)){
-      localCacher.cacheData(logAnalyser.calcHourFrequency.name, hourFrequency);
-    }
   };
 
   const drawChart = async function (domNode, frquencyList) {
