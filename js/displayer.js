@@ -157,6 +157,8 @@ export function createDisplayer() {
     const textNode = document.querySelector("#day-ranking");
     const chart = drawChart(chartNode, dayFrequency);
     showRankText(textNode, dayFrequency);
+    
+
     localCacher.cacheData(logAnalyser.calcDayFrequency.name, dayFrequency);
   };
 
@@ -171,7 +173,10 @@ export function createDisplayer() {
     const top7 = strAdded.slice(0, 7);
     const chart = drawChart(chartNode, top7);
     showRankText(textNode, strAdded);
-    localCacher.cacheData(logAnalyser.calcHourFrequency.name, hourFrequency);
+
+    if(!localCacher.isCacheAvailable(logAnalyser.calcHourFrequency.name)){
+      localCacher.cacheData(logAnalyser.calcHourFrequency.name, hourFrequency);
+    }
   };
 
   const drawChart = async function (domNode, frquencyList) {
