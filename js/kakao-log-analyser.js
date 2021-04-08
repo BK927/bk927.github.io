@@ -12,13 +12,13 @@ const KO_VIDEO_REGEX = /\s:\s동영상\r?\n/g;
 const KO_EMOJI_REGEX = /\s:\s이모티콘\r?\n/g;
 const YOUTUBE_LINK_REGEX = /(https:\/\/youtu\.be\/.+)|(https:\/\/www\.youtube\.com\/.+)/g;
 
-export function createScriptObj(content) {
+export function createLogAnalyser(content) {
   //Private Method
   const countMatchToRegex = function (str, regex) {
     return ((str || "").match(regex) || []).length;
   };
 
-  const getTypingRanking = function (script) {
+  const calcTypingRanking = function (script) {
     const chattingArray = script.match(KO_CHATTING_AND_NAME_REGEX);
     let rankingMap = new Map();
 
@@ -58,7 +58,7 @@ export function createScriptObj(content) {
   const countDayFrequency = function (parsedDate) {
     const dayArray = [];
     parsedDate.forEach((element) => {
-      const dayLabel = getDayLabel(element.getDay());
+      const dayLabel = converToDayLabel(element.getDay());
       dayArray.push(dayLabel);
     });
 
@@ -132,7 +132,7 @@ export function createScriptObj(content) {
     return word;
   };
 
-  const getDayLabel = function (day) {
+  const converToDayLabel = function (day) {
     const week = new Array("일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일");
     const dayLabel = week[day];
     return dayLabel;
@@ -148,15 +148,6 @@ export function createScriptObj(content) {
   )
     ? LangEnum.ko
     : null;
-  const nameFrequency = countNameFrequnecy(script);
-  const dayFrequency = countDayFrequency(parsedDates);
-  const hourFrequency = countHourFreqeuncy(parsedDates);
-
-  const numberOfPhoto = countMatchToRegex(script, KO_PHOTO_REGEX);
-  const numberOfVideo = countMatchToRegex(script, KO_VIDEO_REGEX);
-  const numberOfEmoji = countMatchToRegex(script, KO_EMOJI_REGEX);
-  const numberOfYoutube = countMatchToRegex(script, YOUTUBE_LINK_REGEX);
-
   const beginDate = parsedDates[0];
   const endDate = parsedDates[parsedDates.length - 1];
   const numberOfLines = parsedDates.length;
@@ -174,18 +165,6 @@ export function createScriptObj(content) {
       return script;
     },
 
-    getNameFrequency: () => {
-      return nameFrequency;
-    },
-
-    getDayFrequency: () => {
-      return dayFrequency;
-    },
-
-    getHourFrequency: () => {
-      return hourFrequency;
-    },
-
     getBeginDate: () => {
       return beginDate;
     },
@@ -194,26 +173,38 @@ export function createScriptObj(content) {
       return endDate;
     },
 
-    getPhotoFrequency: () => {
-      return numberOfPhoto;
-    },
-
-    getVideoFrequency: () => {
-      return numberOfVideo;
-    },
-
-    getEmojiFrequency: () => {
-      return numberOfEmoji;
-    },
-
-    getYoutubeFrequency: () => {
-      return numberOfYoutube;
-    },
-
-    getTypingRanking: () => {
-      return getTypingRanking(script);
-    },
-
     numberOfLines: numberOfLines,
+
+    calcNameFrequency: function(){
+      return countNameFrequnecy(script);
+    },
+
+    calcDayFrequency: function(){
+      return countDayFrequency(parsedDates);
+    }, 
+
+    calcHourFrequency: function(){
+      return countHourFreqeuncy(parsedDates);
+    },
+
+    calcPhotoFrequency: function(){
+      return countMatchToRegex(script, KO_PHOTO_REGEX);
+    },
+
+    calcVideoFrequency: function(){
+      return countMatchToRegex(script, KO_VIDEO_REGEX);
+    },
+
+    calcEmojiFrequency: function(){
+      return countMatchToRegex(script, KO_EMOJI_REGEX);
+    },
+
+    calcYoutubeFrequency: function(){
+      return countMatchToRegex(script, YOUTUBE_LINK_REGEX);
+    },
+
+    calcTypingRanking: function(){
+      return calcTypingRanking(script);
+    },
   };
 }

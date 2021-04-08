@@ -19,10 +19,6 @@ body {
   height: max-content;
 }
 
-h1 {
-  font-size: xx-large;
-}
-
 header {
   text-align: center;
   margin: 0;
@@ -33,18 +29,20 @@ header {
   visibility: hidden;
 }
 
-header > h2 {
+header h1 {
   display: block;
-  margin-right: 20px;
+  margin: 2vh 3vw 5vh 3vw;
+  font-size: 4rem;
 }
 
 .filebox {
-  width: 110px;
+  width: max-content;
   display: flex;
   text-align: center;
   align-items: center;
   margin: 0 auto;
   border-radius: 0.25em;
+  font-size: 3rem;
 }
 
 .filebox > i {
@@ -75,12 +73,13 @@ header > h2 {
 
 .container {
   border-radius: 10px;
-  margin: 20px 0;
+  margin: 20px 3vw;
   padding: 20px 30px;
   max-width: 1400px;
 }
 
 article {
+  position: relative;
   display: block;
   box-sizing: content-box;
   border-radius: 5px;
@@ -146,12 +145,43 @@ article  ol  li {
 footer {
   display: block;
   text-align: center;
+  font-size: 1.9rem;
   font-weight: 500;
 }
 
 footer a{
   text-decoration: none;
   font-weight: 700;
+}
+
+.loading-wrapper {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  top: calc(50% - 40px);
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
 }
 
 /* The emerging W3C standard
