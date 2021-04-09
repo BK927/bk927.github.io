@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500&display=swap&text=메뉴닫기카카오톡대화분석기");
+
+html {
+  font-size: 16px;
+}
 
 html,
 body {
@@ -11,7 +16,6 @@ body {
 
 body {
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 120%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -19,8 +23,17 @@ body {
   height: max-content;
 }
 
+.active {
+  visibility: visible;
+}
+
+a {
+  transition: all 0.5s ease-out;
+}
+
+
 h1 {
-  font-size: xx-large;
+  font-size: 2rem;
 }
 
 header {
@@ -28,23 +41,27 @@ header {
   margin: 0;
   width: 100%;
   height: 0vh;
-  display: block;
+  display: flex;
   overflow: hidden;
   visibility: hidden;
+  justify-content: center;
+  flex-direction: column;
 }
 
-header > h2 {
-  display: block;
-  margin-right: 20px;
+header.active {
+  height: auto;
+  margin: 15vh auto 10vh auto;
+  overflow: auto;
 }
 
 .filebox {
-  width: 110px;
+  width: 5.8rem;
   display: flex;
   text-align: center;
   align-items: center;
   margin: 0 auto;
   border-radius: 0.25em;
+  transition: all 0.3s ease-out;
 }
 
 .filebox > i {
@@ -75,9 +92,13 @@ header > h2 {
 
 .container {
   border-radius: 10px;
-  margin: 20px 0;
-  padding: 20px 30px;
-  max-width: 1400px;
+  margin: 4vh 0;
+  padding: 3vh 2vw;
+  max-width: 1200px;
+}
+
+.container * {
+  transition: all 1s ease-out;
 }
 
 article {
@@ -91,26 +112,39 @@ article {
   opacity: 0;
 }
 
+article.loading {
+  visibility: visible;
+  height: max-content;
+  margin: 3vh 0px;
+  padding: 1vh 1.5vw;
+}
+
+article.active {
+  height: max-content;
+  margin: 3vh 0px;
+  padding: 1vh 1.5vw;
+  opacity: 1;
+}
 
 article > h3 {
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 2.8vh;
 }
 
 .article-grid {
   display: flex;
   flex-basis: 0;
-  gap: 8px;
+  gap: 0.7vw;
   align-content: space-between;
 }
 
-.article-grid > div{
+.article-grid > div {
   border-radius: 5px;
   padding: 8px 15px;
   flex: 1;
 }
 
-.article-grid > div > h4{
+.article-grid > div > h4 {
   display: block;
   margin-bottom: 15px;
 }
@@ -118,13 +152,18 @@ article > h3 {
 .chart-container {
   position: relative;
   padding: 8px;
-  width: 100% - 16px;
+  width: 99%;
+  max-width: 89vw;
   height: 30vw;
   min-height: 300px;
   border-radius: 5px;
 }
 
-article ol{
+.chart-container * {
+  transition: none;
+}
+
+article ol {
   display: flex;
   flex-direction: column;
   align-content: flex-start;
@@ -139,7 +178,7 @@ ol li:before {
   padding-left: 15px;
 }
 
-article  ol  li {
+article ol li {
   padding: 8px 5px 8px 0px;
   margin: 3px 0;
   counter-increment: list;
@@ -153,7 +192,7 @@ footer {
   font-weight: 500;
 }
 
-footer a{
+footer a {
   text-decoration: none;
   font-weight: 700;
 }
@@ -169,10 +208,74 @@ footer a{
   width: 12px;
 }
 
-*::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.8);
-}
-
 *::-webkit-scrollbar-thumb {
   border-radius: 20px;
+}
+
+@-webkit-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
 }

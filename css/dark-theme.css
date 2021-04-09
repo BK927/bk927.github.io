@@ -14,9 +14,9 @@
   --midium-emphasis: rgba(255, 255, 255, 0.6);
   --disable: rgba(255, 255, 255, 0.38);
   --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  --primary-color: #BB86FC;
-  --primary-variant-color: #3700B3;
-  --secondary-color: #03DAC6;
+  --primary-color: #bb86fc;
+  --primary-variant-color: #3700b3;
+  --secondary-color: #03dac6;
 }
 
 body {
@@ -24,9 +24,21 @@ body {
   color: var(--font-color);
 }
 
-pre {
+.overlay {
+  background: var(--background-color);
+}
+
+input[id="menu"] + label {
+  background: #272727;
   box-shadow: var(--box-shadow);
-  background-color: var(--surface-03dp);
+}
+
+input[id="menu"] + label .burger span {
+  background: var(--font-color);
+}
+
+input[id="menu"] + label + nav ul li a {
+  color: var(--font-color);
 }
 
 .filebox {
@@ -52,7 +64,7 @@ pre {
   color: var(--high-emphasis);
 }
 
-.article-grid > div{
+.article-grid > div {
   background-color: var(--surface-03dp);
   box-shadow: var(--box-shadow);
 }
@@ -62,11 +74,11 @@ pre {
   box-shadow: var(--box-shadow);
 }
 
-article  ol  li {
+article ol li {
   background-color: var(--surface-03dp);
 }
 
-article  ol  li:hover {
+article ol li:hover {
   background-color: var(--midium-emphasis);
 }
 
@@ -74,7 +86,7 @@ footer a {
   color: var(--secondary-color);
 }
 
-footer a:hover{
+footer a:hover {
   color: var(--primary-color);
 }
 
