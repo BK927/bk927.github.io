@@ -37,9 +37,19 @@ export function createBarChart(domNode, label, labels, values) {
     options: {
       maintainAspectRatio: false,
       legend: {
+        datalabels: {
+          font: function (context) {
+            var avgSize = Math.round((context.chart.height + context.chart.width) / 2);
+            var size = Math.round(avgSize / 32);
+            size = size > 12 ? 12 : size; // setting max limit to 12
+            return {
+              size: size,
+              weight: "bold",
+            };
+          },
+        },
         labels: {
           fontColor: "white",
-          fontSize: 18,
         },
       },
       scales: {
@@ -69,6 +79,16 @@ export function createBarChart(domNode, label, labels, values) {
           },
         ],
       },
+      plugins: [
+        {
+          /* Adjust axis labelling font size according to chart size */
+          beforeDraw: function (c) {
+            var chartHeight = c.chart.height;
+            var size = (chartHeight * 5) / 100;
+            c.scales["y-axis-0"].options.ticks.minor.fontSize = size;
+          },
+        },
+      ],
     },
   });
 

@@ -152,7 +152,7 @@ article > h3 {
 .chart-container {
   position: relative;
   padding: 8px;
-  width: min(99%, 87.5vw);
+  width: min(99%, calc(94.5vw - 2vmax - 4vw));
   height: 30vw;
   min-height: 300px;
   border-radius: 5px;
