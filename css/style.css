@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500&display=swap&text=메뉴닫기카카오톡대화분석기");
+
+html {
+  font-size: 16px;
+}
 
 html,
 body {
@@ -11,7 +16,6 @@ body {
 
 body {
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 120%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -19,30 +23,45 @@ body {
   height: max-content;
 }
 
+.active {
+  visibility: visible;
+}
+
+a {
+  transition: all 0.5s ease-out;
+}
+
+
+h1 {
+  font-size: 2rem;
+}
+
 header {
   text-align: center;
   margin: 0;
   width: 100%;
   height: 0vh;
-  display: block;
+  display: flex;
   overflow: hidden;
   visibility: hidden;
+  justify-content: center;
+  flex-direction: column;
 }
 
-header h1 {
-  display: block;
-  margin: 2vh 3vw 5vh 3vw;
-  font-size: 4rem;
+header.active {
+  height: auto;
+  margin: 30px auto 30px auto;
+  overflow: auto;
 }
 
 .filebox {
-  width: max-content;
+  width: 5.8rem;
   display: flex;
   text-align: center;
   align-items: center;
   margin: 0 auto;
   border-radius: 0.25em;
-  font-size: 3rem;
+  transition: all 0.3s ease-out;
 }
 
 .filebox > i {
@@ -73,9 +92,13 @@ header h1 {
 
 .container {
   border-radius: 10px;
-  margin: 20px 3vw;
-  padding: 20px 30px;
-  max-width: 1400px;
+  margin: 4vmin 0;
+  padding: 30px;
+  max-width: 1200px;
+}
+
+.container * {
+  transition: all 1s ease-out;
 }
 
 article {
@@ -90,36 +113,58 @@ article {
   opacity: 0;
 }
 
+article.loading {
+  visibility: visible;
+  height: max-content;
+  margin: 1vmax 0px;
+  padding: 2%;
+}
+
+article.active {
+  height: max-content;
+  margin: 1vmax 0px;
+  padding: 2% 2%;
+  opacity: 1;
+}
 
 article > h3 {
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 1.8rem;
 }
 
 .article-grid {
   display: flex;
   flex-basis: 0;
-  gap: 8px;
+  gap: 2%;
   align-content: space-between;
 }
 
-.article-grid > div{
+.article-grid > div {
   border-radius: 5px;
   padding: 8px 15px;
   flex: 1;
 }
 
-.article-grid > div > h4{
+.article-grid > div > h4 {
   display: block;
   margin-bottom: 15px;
 }
 
-article > canvas {
-  width: 100%;
+.chart-container {
+  position: relative;
+  margin: 0 auto;
+  padding: 8px;
+  width: clamp(calc(100% - 16px), calc(100% - 2vmax - 4vw - 16px), calc(98vw - 2vmax - 4vw - 16px));
+  height: 50vmin;
+  min-height: 300px;
   border-radius: 5px;
 }
 
-article ol{
+.chart-container * {
+  transition: none;
+}
+
+article ol {
   display: flex;
   flex-direction: column;
   align-content: flex-start;
@@ -134,9 +179,9 @@ ol li:before {
   padding-left: 15px;
 }
 
-article  ol  li {
-  padding: 8px 5px 8px 0px;
-  margin: 3px 0;
+article ol li {
+  padding: 0.4rem 0.2rem 0.3rem 0px;
+  margin: 0.15rem 0;
   counter-increment: list;
   overflow: visible;
   white-space: nowrap;
@@ -149,7 +194,7 @@ footer {
   font-weight: 500;
 }
 
-footer a{
+footer a {
   text-decoration: none;
   font-weight: 700;
 }
@@ -182,7 +227,30 @@ footer a{
   height: 64px;
   margin: 8px;
   border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 }
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 /* The emerging W3C standard
    that is currently Firefox-only */
@@ -195,10 +263,74 @@ footer a{
   width: 12px;
 }
 
-*::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.8);
-}
-
 *::-webkit-scrollbar-thumb {
   border-radius: 20px;
+}
+
+@-webkit-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
 }

@@ -14,5 +14,6 @@ function readSingleFile(e) {
 }
 
 (function () {
+
   document.getElementById("file-input").addEventListener("change", readSingleFile, false);
 })();
