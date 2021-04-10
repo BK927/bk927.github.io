@@ -6,7 +6,6 @@ function readSingleFile(e) {
     return;
   }
 
-<<<<<<< HEAD
   const display = createDisplayer();
   
   const reader = new FileReader();
