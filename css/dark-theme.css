@@ -24,9 +24,21 @@ body {
   color: var(--font-color);
 }
 
-pre {
+.overlay {
+  background: var(--background-color);
+}
+
+input[id="menu"] + label {
+  background: #272727;
   box-shadow: var(--box-shadow);
-  background-color: var(--surface-03dp);
+}
+
+input[id="menu"] + label .burger span {
+  background: var(--font-color);
+}
+
+input[id="menu"] + label + nav ul li a {
+  color: var(--font-color);
 }
 
 .filebox {
@@ -57,7 +69,7 @@ pre {
   box-shadow: var(--box-shadow);
 }
 
-article > canvas {
+.chart-container {
   background-color: var(--surface-03dp);
   box-shadow: var(--box-shadow);
 }

@@ -7,8 +7,8 @@ const KO_NAME_REGEX = /(?<=(\d{4}년\s\d{1,2}월\s\d{1,2}일\s((오전)|(오후)
 const KO_CHATTING_REGEX = /(?<=(\d{4}년\s\d{1,2}월\s\d{1,2}일\s((오전)|(오후))\s\d{1,2}:\d{1,2},\s.+\s:\s)).+/g;
 const KO_CHATTING_AND_NAME_REGEX = /(?<=(\d{4}년\s\d{1,2}월\s\d{1,2}일\s((오전)|(오후))\s\d{1,2}:\d{1,2},\s))[\s\S]+?(?=\r?\n\d{4}년)/g;
 
-const KO_PHOTO_REGEX = /\s:\s사진\r?\n/g;
-const KO_VIDEO_REGEX = /\s:\s동영상\r?\n/g;
+const KO_PHOTO_REGEX = /(\s:\s사진\r?\n)|(<사진 읽지 않음>)/g;
+const KO_VIDEO_REGEX = /(\s:\s동영상\r?\n)|(<동영상 읽지 않음>)/g;
 const KO_EMOJI_REGEX = /\s:\s이모티콘\r?\n/g;
 const YOUTUBE_LINK_REGEX = /(https:\/\/youtu\.be\/.+)|(https:\/\/www\.youtube\.com\/.+)/g;
 

@@ -6,6 +6,7 @@ function readSingleFile(e) {
     return;
   }
 
+<<<<<<< HEAD
   const display = createDisplayer();
   
   const reader = new FileReader();
@@ -14,5 +15,6 @@ function readSingleFile(e) {
 }
 
 (function () {
+
   document.getElementById("file-input").addEventListener("change", readSingleFile, false);
 })();
