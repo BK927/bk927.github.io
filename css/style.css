@@ -93,7 +93,7 @@ header.active {
 .container {
   border-radius: 10px;
   margin: 4vmin 0;
-  padding: 3vh 2vw;
+  padding: 30px;
   max-width: 1200px;
 }
 
@@ -116,7 +116,7 @@ article.loading {
   visibility: visible;
   height: max-content;
   margin: 1vmax 0px;
-  padding: 2% 2%;
+  padding: 2%;
 }
 
 article.active {
@@ -151,9 +151,10 @@ article > h3 {
 
 .chart-container {
   position: relative;
+  margin: 0 auto;
   padding: 8px;
-  width: min(99%, calc(94.5vw - 2vmax - 4vw));
-  height: 30vw;
+  width: clamp(calc(100% - 16px), calc(100% - 2vmax - 4vw - 16px), calc(98vw - 2vmax - 4vw - 16px));
+  height: 50vmin;
   min-height: 300px;
   border-radius: 5px;
 }
@@ -178,8 +179,8 @@ ol li:before {
 }
 
 article ol li {
-  padding: 8px 5px 8px 0px;
-  margin: 3px 0;
+  padding: 0.4rem 0.2rem 0.3rem 0px;
+  margin: 0.15rem 0;
   counter-increment: list;
   overflow: visible;
   white-space: nowrap;
