@@ -9,27 +9,26 @@ import InnnerGrid from "components/kakao_contents/InnnerGrid";
 import useStyles from "asset/style/style";
 
 
-// TODO: Add Loading Effect, Refactor inefficient chattingAnalyser methods
+// TODO: Add Loading Effect, Refactor inefficient chattingAnalyser methods, change contents from array to dictionary
 function KakaoAnalyser(props) {
   const classes = useStyles();
   const [contents, setContents] = useState([]);
-  //const [chattingAnalyser, setChattingAnalyser] = useState(undefined);
   const [uploaded, setUploaded] = useState(true);
 
-  const createDescription = function (text) {
-    return <Description text={text}></Description>;
+  const createDescription = function (text, key) {
+    return <Description key={key} text={text}></Description>;
   };
 
-  const createBarChart = function (data) {
-    return <BarChart data={data}></BarChart>;
+  const createBarChart = function (data, key) {
+    return <BarChart key={key} data={data}></BarChart>;
   };
 
-  const createRanking = function (data) {
-    return <Ranking data={data} />;
+  const createRanking = function (data, key) {
+    return <Ranking key={key} data={data} />;
   };
 
-  const createInnnerGrid = function (cells) {
-    return <InnnerGrid cells={cells}></InnnerGrid>;
+  const createInnnerGrid = function (cells, key) {
+    return <InnnerGrid key={key} cells={cells}></InnnerGrid>;
   };
 
   const uploadEvent = function (e) {

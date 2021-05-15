@@ -5,6 +5,8 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import PropTypes from 'prop-types';
+
 
 function ShowcaseCard(props) {
   const classes = useStyles();
@@ -30,5 +32,16 @@ function ShowcaseCard(props) {
     </Card>
   );
 }
+
+ShowcaseCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  action: PropTypes.string,
+};
+
+ShowcaseCard.defaultProps = {
+  action: '이동하기',
+};
 
 export default ShowcaseCard;

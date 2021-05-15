@@ -1,5 +1,7 @@
 import React from "react";
 import useStyles from "asset/style/style";
+import PropTypes from 'prop-types';
+
 
 function InnnerGrid(props) {
   const classes = useStyles();
@@ -15,5 +17,9 @@ function InnnerGrid(props) {
 
   return <div className={classes.innerGrid}>{cellList}</div>;
 }
+
+InnnerGrid.propTypes = {
+  cells: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default InnnerGrid;

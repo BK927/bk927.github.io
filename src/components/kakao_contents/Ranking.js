@@ -1,5 +1,7 @@
 import React from "react";
 import useStyles from "asset/style/style";
+import PropTypes from 'prop-types';
+
 
 function Ranking(props) {
   const classes = useStyles();
@@ -20,5 +22,9 @@ function Ranking(props) {
 
   return <ol className={classes.rankingList}>{liTags}</ol>;
 }
+
+Ranking.propTypes = {
+  data: PropTypes.array.isRequired,
+};
 
 export default Ranking;

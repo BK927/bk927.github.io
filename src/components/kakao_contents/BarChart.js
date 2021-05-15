@@ -1,6 +1,7 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 import useStyles from "asset/style/style";
+import PropTypes from 'prop-types';
 
 function BarChart(props) {
   const classes = useStyles();
@@ -83,6 +84,10 @@ function BarChart(props) {
       <Bar data={chartData} options={options} legend={legend} />
     </div>
   );
+}
+
+BarChart.propTypes = {
+  data: PropTypes.array.isRequired,
 }
 
 export default BarChart;

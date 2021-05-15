@@ -3,6 +3,8 @@ import Button from "@material-ui/core/Button";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { Box } from "@material-ui/core";
 import useStyles from "asset/style/style";
+import PropTypes from 'prop-types';
+
 
 
 
@@ -32,5 +34,9 @@ function FileUpload(props) {
     </Box>
   );
 }
+
+FileUpload.propTypes = {
+  uploadEvent: PropTypes.func.isRequired,
+};
 
 export default FileUpload;
