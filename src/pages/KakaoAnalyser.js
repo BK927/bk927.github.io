@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import FileUpload from "components/FileUpload.js";
 import KakaoContent from "components/KakaoContent.js";
-import createChattingAnalyser from "models/chatting_analyser.js";
+import createChattingAnalyser from "util/chatting_analyser.js";
 import Description from "components/kakao_contents/Description";
 import BarChart from "components/kakao_contents/BarChart";
 import Ranking from "components/kakao_contents/Ranking";

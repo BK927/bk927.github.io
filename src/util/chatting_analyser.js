@@ -1,4 +1,4 @@
-import { generateHash } from "models/md5hash.js";
+import { generateHash } from "util/md5hash.js";
 
 export const LangEnum = Object.freeze({ ko: 0, en: 1, jp: 2 });
 
