@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
-import FileUpload from "components/FileUpload.js";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import ButtonToAction from "components/ButtonToAction.js";
 import KakaoContent from "components/KakaoContent.js";
 import createChattingAnalyser from "util/chatting_analyser.js";
 import Description from "components/kakao_contents/Description";
@@ -8,8 +9,7 @@ import Ranking from "components/kakao_contents/Ranking";
 import InnnerGrid from "components/kakao_contents/InnnerGrid";
 import useStyles from "asset/style/style";
 
-
-// TODO: Add Loading Effect, Refactor inefficient chattingAnalyser methods, change contents from array to dictionary
+// TODO: Add Loading Effect(With useEffect), Refactor inefficient chattingAnalyser methods, change contents from array to dictionary
 function KakaoAnalyser(props) {
   const classes = useStyles();
   const [contents, setContents] = useState([]);
@@ -137,15 +137,29 @@ function KakaoAnalyser(props) {
   };
 
   const components = contents.map((element, index) => {
-    return <KakaoContent key={index} className={classes.contentBox} title={element.title} items={element.items}></KakaoContent>;
+    return (
+      <KakaoContent
+        key={index}
+        className={classes.contentBox}
+        title={element.title}
+        items={element.items}
+      ></KakaoContent>
+    );
   });
 
   return (
     <Fragment>
-      {uploaded ? 
-      (<FileUpload uploadEvent={uploadEvent}></FileUpload>
-        ) : (
-      components)}
+      {uploaded ? (
+        <ButtonToAction
+          title="카카오톡 대화 내보내기 기능을 사용해서 파일을 업로드 해 주세요"
+          buttonText="업로드"
+          onChange={uploadEvent}
+          startIcon={<CloudUploadIcon />}
+          inputType="file"
+        />
+      ) : (
+        components
+      )}
     </Fragment>
   );
 }

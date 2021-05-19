@@ -23,7 +23,10 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     margin: "30px auto 30px auto",
     overflow: "auto",
-    "& > .MuiBox-root": {
+    "& > .MuiTypography-root": {
+      margin: theme.spacing(7),
+    },
+    "& > .MuiButton-root": {
       display: "flex",
       textAlign: "center",
       alignItems: "center",
@@ -123,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
     listStyleType: "none",
     "& li": {
       backgroundColor: theme.palette.background.dp03,
-      padding: theme.spacing(2),
+      padding: theme.spacing(1.5),
       margin: "0.3rem 0",
       overflow: "visible",
       whiteSpace: "nowrap",

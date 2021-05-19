@@ -14,6 +14,7 @@ const KO_VIDEO_REGEX = /(\s:\s동영상\r?\n)|(<동영상 읽지 않음>)/g;
 const KO_EMOJI_REGEX = /\s:\s이모티콘\r?\n/g;
 const YOUTUBE_LINK_REGEX = /(https:\/\/youtu\.be\/.+)|(https:\/\/www\.youtube\.com\/.+)/g;
 
+// TODO: refactor structure of class(too much overhead, trash readability)
 function createChattingAnalyser(content) {
   //Property
   const md5Hash = generateHash(content);

@@ -1,6 +1,6 @@
 import "asset/style/menu.css";
 import "asset/style/font.css";
-//import "asset/css/media.css";
+import { defaults } from "react-chartjs-2";
 
 import React from "react";
 import { Route } from "react-router-dom";
@@ -11,24 +11,26 @@ import Paper from "@material-ui/core/Paper";
 
 function App() {
   const classes = useStyles();
+  defaults.font.size = "16";
+  defaults.color = "#fff";
 
   /*eslint-disable */
   return (
-      <Paper elevation={3} className={classes.Container}>
+    <Paper elevation={3} className={classes.Container}>
       <Menu></Menu>
-        <Route exact path="/" component={Home} />
-        <Route path="/portfolio" component={Portfolio} />
-        <Route path="/kakao-analyser" component={KakaoAnalyser} />
-        <Route path="/character-maker" component={CharacterMaker} />
-        <footer>
-          <p>
-            Made by&nbsp;
-            <a href="https://bustermachinelab.net/" className={classes.link} target="_blank" rel="author">
-              BK927
-            </a>
-          </p>
-        </footer>
-      </Paper>
+      <Route exact path="/" component={Home} />
+      <Route path="/portfolio" component={Portfolio} />
+      <Route path="/kakao-analyser" component={KakaoAnalyser} />
+      <Route path="/character-maker" component={CharacterMaker} />
+      <footer>
+        <p>
+          Made by&nbsp;
+          <a href="https://bustermachinelab.net/" className={classes.link} target="_blank" rel="author">
+            BK927
+          </a>
+        </p>
+      </footer>
+    </Paper>
   );
 }
 

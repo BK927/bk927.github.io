@@ -2,5 +2,9 @@
   "compilerOptions": {
     "baseUrl": "src"
   },
-  "include": ["src"]
+  "typeAcquisition": {
+    "exclude": [ "dotenv" ]
+  },
+  "include": ["src"],
+  "javascript.updateImportsOnFileMove.enabled": "prompt"
 }
