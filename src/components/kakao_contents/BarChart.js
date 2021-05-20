@@ -1,5 +1,6 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
+import Paper from "@material-ui/core/Paper";
 import useStyles from "asset/style/style";
 import PropTypes from "prop-types";
 import generateChartColor from "util/generateChartColor";
@@ -45,9 +46,9 @@ function BarChart(props) {
   chartData.datasets[0]["borderColor"] = colors.borderColor;
 
   return (
-    <div className={classes.chartContainer}>
+    <Paper className={classes.chartContainer} elevation={2}>
       <Bar data={chartData} options={options} legend={legend} />
-    </div>
+    </Paper>
   );
 }
 

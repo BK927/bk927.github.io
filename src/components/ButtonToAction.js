@@ -9,7 +9,7 @@ function ButtonToAction({ title, buttonText, startIcon, inputType, onChange, onC
   const classes = useStyles();
 
   return (
-    <Box className={classes.filebox}>
+    <Box className={classes.btaBox}>
       <Typography variant="h3">{title}</Typography>
       <Box>
         <input

@@ -10,11 +10,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "auto",
     marginRight: "auto",
     padding: theme.spacing(4),
-    "& > .MuiPaper-root": {
-      backgroundColor: theme.palette.background.dp02,
-    },
   },
-  filebox: {
+  btaBox: {
     textAlign: "center",
     width: "100%",
     display: "flex",
@@ -48,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "auto",
     marginRight: "auto",
     padding: theme.spacing(2),
+    "&&": {
+      backgroundColor: theme.palette.background.dp02,
+    },
     "& h3": {
       display: "block",
       marginBottom: "1.8rem",
@@ -138,6 +138,9 @@ const useStyles = makeStyles((theme) => ({
     "& li:hover": {
       backgroundColor: theme.palette.background.dp08,
     },
+  },
+  domainTitle: {
+    margin: theme.spacing(3),
   },
 }));
 

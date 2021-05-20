@@ -1,5 +1,6 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
+import Paper from "@material-ui/core/Paper";
 import useStyles from "asset/style/style";
 import PropTypes from "prop-types";
 import generateChartColor from "util/generateChartColor";
@@ -12,6 +13,8 @@ function FacetChart({ facets }) {
     datasets: [
       {
         data: facets.map((element) => element.score),
+        backgroundColor: ["rgba(255, 255, 255, 0.4)"],
+        borderColor: ["rgba(255, 255, 255, 0.7)"],
         borderWidth: 1,
       },
     ],
@@ -46,15 +49,10 @@ function FacetChart({ facets }) {
 
   const legend = {};
 
-  const colors = generateChartColor(chartData.datasets[0]);
-
-  chartData.datasets[0]["backgroundColor"] = colors.backgroundColor;
-  chartData.datasets[0]["borderColor"] = colors.borderColor;
-
   return (
-    <div className={classes.chartContainer}>
+    <Paper className={classes.chartContainer} elevation={2}>
       <Bar data={chartData} options={options} legend={legend} />
-    </div>
+    </Paper>
   );
 }
 

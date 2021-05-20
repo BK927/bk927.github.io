@@ -1,11 +1,11 @@
 import React, { Fragment, useState } from "react";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
 import useStyles from "asset/style/style";
 import ButtonToAction from "components/ButtonToAction";
 import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
 
+// TODO: Ugly readability at domains. Fix it.
 const CharacterMaker = () => {
   const classes = useStyles();
   const [isGenerated, setIsGenerated] = useState(false);

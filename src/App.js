@@ -13,6 +13,7 @@ function App() {
   const classes = useStyles();
   defaults.font.size = "16";
   defaults.color = "#fff";
+  defaults.plugins.tooltip.displayColors = false;
 
   /*eslint-disable */
   return (
