@@ -9,7 +9,7 @@ import Ranking from "components/kakao_contents/Ranking";
 import InnnerGrid from "components/kakao_contents/InnnerGrid";
 import useStyles from "asset/style/style";
 
-// TODO: Add Loading Effect(With useEffect), Refactor inefficient chattingAnalyser methods, change contents from array to dictionary
+// TODO: Add Loading Effect(With useEffect), Refactor inefficient chattingAnalyser methods
 function KakaoAnalyser(props) {
   const classes = useStyles();
   const [contents, setContents] = useState([]);
@@ -43,13 +43,16 @@ function KakaoAnalyser(props) {
       setUploaded(false);
       const chattingAnalyser = createChattingAnalyser(fileContent);
       setContents([
-        { title: "해쉬 코드", items: [[createDescription, chattingAnalyser.getMd5Hash]] },
+        {
+          title: "해쉬 코드",
+          items: [{ createNodefunc: createDescription, calcDataFunc: chattingAnalyser.getMd5Hash }],
+        },
         {
           title: "집계 기간",
           items: [
-            [
-              createDescription,
-              () => {
+            {
+              createNodefunc: createDescription,
+              calcDataFunc: () => {
                 const beginDate = chattingAnalyser.calcBeginDate();
                 const endDate = chattingAnalyser.calcEndDate();
 
@@ -63,15 +66,15 @@ function KakaoAnalyser(props) {
 
                 return convertDate(beginDate) + " ~ " + convertDate(endDate);
               },
-            ],
+            },
           ],
         },
         {
           title: "채팅 수 & 하루 평균 채팅 수",
           items: [
-            [
-              createInnnerGrid,
-              () => {
+            {
+              createNodefunc: createInnnerGrid,
+              calcDataFunc: () => {
                 const beginDate = chattingAnalyser.calcBeginDate();
                 const endDate = chattingAnalyser.calcEndDate();
                 const numOfLines = chattingAnalyser.calcNumOfLines();
@@ -84,15 +87,15 @@ function KakaoAnalyser(props) {
                   { title: "하루 평균 채팅 수", text: String(Math.floor(numOfLines / gapDay)) },
                 ];
               },
-            ],
+            },
           ],
         },
         {
           title: "사진, 동영상, 이모티콘, 유튜브 링크 수",
           items: [
-            [
-              createInnnerGrid,
-              () => {
+            {
+              createNodefunc: createInnnerGrid,
+              calcDataFunc: () => {
                 return [
                   { title: "사진", text: chattingAnalyser.calcPhotoFrequency() },
                   { title: "동영상", text: chattingAnalyser.calcVideoFrequency() },
@@ -100,35 +103,35 @@ function KakaoAnalyser(props) {
                   { title: "유튜브 링크 수", text: chattingAnalyser.calcYoutubeFrequency() },
                 ];
               },
-            ],
+            },
           ],
         },
         {
           title: "채팅방에서 말을 가장 많이 한 사람",
           items: [
-            [createBarChart, chattingAnalyser.calcNameFrequency],
-            [createRanking, chattingAnalyser.calcNameFrequency],
+            { createNodefunc: createBarChart, calcDataFunc: chattingAnalyser.calcNameFrequency },
+            { createNodefunc: createRanking, calcDataFunc: chattingAnalyser.calcNameFrequency },
           ],
         },
         {
           title: "채팅방에서 타이핑한 글자수",
           items: [
-            [createBarChart, chattingAnalyser.calcTypingRanking],
-            [createRanking, chattingAnalyser.calcTypingRanking],
+            { createNodefunc: createBarChart, calcDataFunc: chattingAnalyser.calcTypingRanking },
+            { createNodefunc: createRanking, calcDataFunc: chattingAnalyser.calcTypingRanking },
           ],
         },
         {
           title: "가장 활발한 시간대",
           items: [
-            [createBarChart, chattingAnalyser.calcHourFrequency],
-            [createRanking, chattingAnalyser.calcHourFrequency],
+            { createNodefunc: createBarChart, calcDataFunc: chattingAnalyser.calcHourFrequency },
+            { createNodefunc: createRanking, calcDataFunc: chattingAnalyser.calcHourFrequency },
           ],
         },
         {
           title: "가장 활발한 요일",
           items: [
-            [createBarChart, chattingAnalyser.calcDayFrequency],
-            [createRanking, chattingAnalyser.calcDayFrequency],
+            { createNodefunc: createBarChart, calcDataFunc: chattingAnalyser.calcDayFrequency },
+            { createNodefunc: createRanking, calcDataFunc: chattingAnalyser.calcDayFrequency },
           ],
         },
       ]);

@@ -1,23 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
 import useStyles from "asset/style/style";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-
-// TODO: Need to change from array to dictionary
-function KakaoContent(props) {
+function KakaoContent({ index, title, items }) {
   const classes = useStyles();
-  const state = {
-    items: props.items,
-  };
 
-  const components = state.items.map((element, index) => {
-    const value = element[1]();
-    return element[0](value, index);
+  const components = items.map((element, index) => {
+    const data = element["calcDataFunc"]();
+    return element["createNodefunc"](data, index);
   });
   return (
-    <Paper className={classes.contentBox} elevation={3} key={props.index}>
-      <h3>{props.title}</h3>
+    <Paper className={classes.contentBox} elevation={3} key={index}>
+      <h3>{title}</h3>
       {components}
     </Paper>
   );
