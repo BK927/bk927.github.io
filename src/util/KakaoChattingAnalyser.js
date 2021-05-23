@@ -93,7 +93,8 @@ function KakaoChattingAnalyser(content) {
     parsedDates = parseToDateArray(script);
     const hourArray = [];
     parsedDates.forEach((element) => {
-      hourArray.push(element.getHours());
+      const hourStr = String(element.getHours()) + "시";
+      hourArray.push(hourStr);
     });
 
     return countFrequency(hourArray);
