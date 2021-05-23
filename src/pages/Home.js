@@ -14,19 +14,19 @@ const Home = () => {
       to: "/portfolio",
     },
     {
-        title: "카카오톡 분석기",
-        category: "유틸리티",
-        body: "단체 채팅방에서 오고 간 대화를 분석할 수 있는 툴입니다.",
-        action: "사용하기",
-        to: "/kakao-analyser",
-      },
-      {
-        title: "캐릭터 성격 분석기",
-        category: "유틸리티",
-        body: "웹소설, 드라마, 영화 등을 만드는데 도움될 수 있는 캐릭터 성격 생성기입니다. 가장 권위 있는 심리검사 빅파이브를 기반으로 다양한 틀을 기반으로 캐릭터 성격을 구상하는데 도움을 줍니다.",
-        action: "사용하기",
-        to: "/character-maker",
-      },
+      title: "카카오톡 분석기",
+      category: "유틸리티",
+      body: "단체 채팅방에서 오고 간 대화를 분석할 수 있는 툴입니다.",
+      action: "사용하기",
+      to: "/kakao-analyser",
+    },
+    {
+      title: "캐릭터 성격 생성기",
+      category: "유틸리티",
+      body: "웹소설, 드라마, 영화 등을 만드는데 도움될 수 있는 캐릭터 성격 생성기입니다. 가장 권위 있는 심리검사 빅파이브를 기반으로 다양한 틀을 기반으로 캐릭터 성격을 구상하는데 도움을 줍니다.",
+      action: "사용하기",
+      to: "/character-maker",
+    },
   ]);
   const cardsComponent = cards.map((element, index) => {
     return (
@@ -40,11 +40,7 @@ const Home = () => {
       ></ShowcaseCard>
     );
   });
-  return (
-    <div className={classes.cardGrid}>
-      {cardsComponent}
-    </div>
-  );
+  return <div className={classes.cardGrid}>{cardsComponent}</div>;
 };
 
 export default Home;
