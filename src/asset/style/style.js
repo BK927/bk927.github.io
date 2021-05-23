@@ -48,9 +48,9 @@ const useStyles = makeStyles((theme) => ({
     "&&": {
       backgroundColor: theme.palette.background.dp02,
     },
-    "& h3": {
+    "& h5": {
       display: "block",
-      marginBottom: "1.8rem",
+      marginBottom: theme.spacing(3.5),
     },
   },
   innerGrid: {
@@ -106,13 +106,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   chartContainer: {
-    backgroundColor: theme.palette.background.dp03,
     position: "relative",
     margin: "0 auto",
     padding: theme.spacing(1),
     height: theme.spacing(50),
     borderRadius: "5px",
     overflow: "hidden",
+    "&&": {
+      backgroundColor: theme.palette.background.dp03,
+    },
     "& * ": {
       transition: "none",
     },

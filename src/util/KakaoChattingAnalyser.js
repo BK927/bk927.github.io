@@ -1,4 +1,5 @@
-import { generateHash } from "util/md5hash.js";
+import { generateHash } from "util/generateHash.js";
+import LocalStorageCacher from "util/LocalStorageCacher";
 
 export const LangEnum = Object.freeze({ ko: 0, en: 1, jp: 2 });
 
@@ -15,9 +16,10 @@ const KO_EMOJI_REGEX = /\s:\s이모티콘\r?\n/g;
 const YOUTUBE_LINK_REGEX = /(https:\/\/youtu\.be\/.+)|(https:\/\/www\.youtube\.com\/.+)/g;
 
 // TODO: refactor structure of class(too much overhead, trash readability)
-function createChattingAnalyser(content) {
+function KakaoChattingAnalyser(content) {
   //Property
   const md5Hash = generateHash(content);
+  const cache = LocalStorageCacher(md5Hash);
   const script = content;
   let parsedDates = null;
   //Support Korean only for now
@@ -26,8 +28,14 @@ function createChattingAnalyser(content) {
       ? LangEnum.ko
       : null;
 
-      
   //Private Method
+  const tryToLoadFromCache = function (func, ...args) {
+    if (cache.isCacheAvailable(func)) {
+      return cache.loadFromCache(func);
+    }
+    return func.apply(null, args);
+  };
+
   const countMatchToRegex = function (str, regex) {
     return ((str || "").match(regex) || []).length;
   };
@@ -91,7 +99,7 @@ function createChattingAnalyser(content) {
     return countFrequency(hourArray);
   };
 
-  const countNameFrequnecy = function (){
+  const countNameFrequnecy = function () {
     const nameArray = script.match(KO_NAME_REGEX);
     return countFrequency(nameArray);
   };
@@ -162,28 +170,28 @@ function createChattingAnalyser(content) {
     },
 
     calcBeginDate: () => {
-      return parseToDateArray()[0];
+      return tryToLoadFromCache(parseToDateArray)[0];
     },
 
     calcEndDate: () => {
-      const datesArray = parseToDateArray();
+      const datesArray = tryToLoadFromCache(parseToDateArray);
       return datesArray[datesArray.length - 1];
     },
 
     calcNumOfLines: () => {
-      return parseToDateArray().length;
+      return tryToLoadFromCache(parseToDateArray).length;
     },
 
     calcNameFrequency: function () {
-      return countNameFrequnecy();
+      return tryToLoadFromCache(countNameFrequnecy);
     },
 
     calcDayFrequency: function () {
-      return countDayFrequency();
+      return tryToLoadFromCache(countDayFrequency);
     },
 
     calcHourFrequency: function () {
-      return countHourFreqeuncy();
+      return tryToLoadFromCache(countHourFreqeuncy);
     },
 
     calcPhotoFrequency: function () {
@@ -203,9 +211,9 @@ function createChattingAnalyser(content) {
     },
 
     calcTypingRanking: function () {
-      return calcTypingRanking(script);
+      return tryToLoadFromCache(calcTypingRanking, script);
     },
   };
 }
 
-export default createChattingAnalyser;
+export default KakaoChattingAnalyser;

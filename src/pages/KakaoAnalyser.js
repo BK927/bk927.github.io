@@ -2,14 +2,14 @@ import React, { Fragment, useState } from "react";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import ButtonToAction from "components/ButtonToAction.js";
 import KakaoContent from "components/KakaoContent.js";
-import createChattingAnalyser from "util/chatting_analyser.js";
+import KakaoChattingAnalyser from "util/KakaoChattingAnalyser.js";
 import Description from "components/kakao_contents/Description";
 import BarChart from "components/kakao_contents/BarChart";
 import Ranking from "components/kakao_contents/Ranking";
 import InnnerGrid from "components/kakao_contents/InnnerGrid";
 import useStyles from "asset/style/style";
 
-// TODO: Add Loading Effect(With useEffect), Refactor inefficient chattingAnalyser methods
+// TODO: Add Loading Effect(With useEffect)
 function KakaoAnalyser(props) {
   const classes = useStyles();
   const [contents, setContents] = useState([]);
@@ -41,7 +41,7 @@ function KakaoAnalyser(props) {
     reader.onload = (e) => {
       const fileContent = e.target.result;
       setUploaded(false);
-      const chattingAnalyser = createChattingAnalyser(fileContent);
+      const chattingAnalyser = KakaoChattingAnalyser(fileContent);
       setContents([
         {
           title: "해쉬 코드",
