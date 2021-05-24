@@ -11,6 +11,15 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "auto",
     padding: theme.spacing(4),
   },
+  loadingCircle: {
+    marginTop: theme.spacing(15),
+    marginBottom: theme.spacing(15),
+    marginLeft: "auto",
+    marginRight: "auto",
+    "&&": {
+      display: "block",
+    },
+  },
   btaBox: {
     textAlign: "center",
     width: "100%",
@@ -142,7 +151,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   domainTitle: {
-    margin: theme.spacing(3),
+    "&&": {
+      margin: theme.spacing(3),
+    },
   },
 }));
 
