@@ -5,13 +5,14 @@ import useStyles from "asset/style/style";
 import ButtonToAction from "components/ButtonToAction";
 import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
 import BigFive from "asset/BigFive";
+import useDocumentTitle from "hooks/useDocumentTitle";
 
 // TODO: Add pyscholgical schema
-const CharacterMaker = () => {
+const CharacterMaker = ({ title }) => {
   const classes = useStyles();
   const [isGenerated, setIsGenerated] = useState(false);
-
   const [domains, setDomains] = useState(BigFive["domains"]);
+  useDocumentTitle(title);
 
   const generateRandomStat = () => {
     return Math.floor(Math.random() * Math.floor(100));

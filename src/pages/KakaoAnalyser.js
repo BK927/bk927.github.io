@@ -8,12 +8,14 @@ import BarChart from "components/kakao_contents/BarChart";
 import Ranking from "components/kakao_contents/Ranking";
 import InnnerGrid from "components/kakao_contents/InnnerGrid";
 import useStyles from "asset/style/style";
+import useDocumentTitle from "hooks/useDocumentTitle";
 
 // TODO: Add Loading Effect(With useEffect)
-function KakaoAnalyser(props) {
+function KakaoAnalyser({ title }) {
   const classes = useStyles();
   const [contents, setContents] = useState([]);
   const [uploaded, setUploaded] = useState(true);
+  useDocumentTitle(title);
 
   const createDescription = function (text, key) {
     return <Description key={key} text={text}></Description>;

@@ -20,9 +20,9 @@ function App() {
     <Paper elevation={3} className={classes.Container}>
       <Menu></Menu>
       <Route exact path="/" component={Home} />
-      <Route path="/portfolio" component={Portfolio} />
-      <Route path="/kakao-analyser" component={KakaoAnalyser} />
-      <Route path="/character-maker" component={CharacterMaker} />
+      <Route path="/portfolio" component={() => <Portfolio title="포트폴리오" />} />
+      <Route path="/kakao-analyser" component={() => <KakaoAnalyser title="카카오톡 대화 분석기" />} />
+      <Route path="/character-maker" component={() => <CharacterMaker title="캐릭터 성격 생성기" />} />
       <footer>
         <p>
           Made by&nbsp;

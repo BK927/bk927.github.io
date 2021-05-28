@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import useStyles from "asset/style/style";
 import ShowcaseCard from "components/ShowcaseCard";
+import useDocumentTitle from "hooks/useDocumentTitle";
 
-const Home = () => {
+const Home = ({ title }) => {
   const classes = useStyles();
+  useDocumentTitle(title);
+
   // eslint-disable-next-line
   const [cards, setCards] = useState([
     {

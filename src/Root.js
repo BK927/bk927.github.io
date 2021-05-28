@@ -69,12 +69,12 @@ function Root() {
   });
 
   return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <BrowserRouter basename="/">
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
