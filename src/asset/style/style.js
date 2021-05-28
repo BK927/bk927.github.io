@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardTitle: {
-    fontSize: 14,
+    fontSize: theme.typography.pxToRem(14),
   },
   cardPost: {
     marginBottom: 12,
@@ -148,11 +148,6 @@ const useStyles = makeStyles((theme) => ({
     },
     "& li:hover": {
       backgroundColor: theme.palette.background.dp08,
-    },
-  },
-  domainTitle: {
-    "&&": {
-      margin: theme.spacing(3),
     },
   },
 }));

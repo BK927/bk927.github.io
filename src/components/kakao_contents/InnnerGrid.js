@@ -3,10 +3,10 @@ import Paper from "@material-ui/core/Paper";
 import useStyles from "asset/style/style";
 import PropTypes from "prop-types";
 
-function InnnerGrid(props) {
+function InnnerGrid({ cells }) {
   const classes = useStyles();
 
-  const cellList = props.cells.map((element, index) => {
+  const cellList = cells.map((element, index) => {
     return (
       <Paper key={index} elevation={1}>
         <h4>{element.title}</h4>

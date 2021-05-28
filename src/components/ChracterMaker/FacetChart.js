@@ -1,8 +1,22 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { Bar } from "react-chartjs-2";
-import Paper from "@material-ui/core/Paper";
-import useStyles from "asset/style/style";
 import PropTypes from "prop-types";
+import { Box } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    position: "relative",
+    margin: "0 auto",
+    padding: theme.spacing(1),
+    height: theme.spacing(50),
+    borderRadius: "5px",
+    overflow: "hidden",
+    "& * ": {
+      transition: "none",
+    },
+  },
+}));
 
 function FacetChart({ facets }) {
   const classes = useStyles();
@@ -49,9 +63,9 @@ function FacetChart({ facets }) {
   const legend = {};
 
   return (
-    <Paper className={classes.chartContainer} elevation={2}>
+    <Box className={classes.root}>
       <Bar data={chartData} options={options} legend={legend} />
-    </Paper>
+    </Box>
   );
 }
 
