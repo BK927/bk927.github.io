@@ -93,13 +93,11 @@ function PersonalityDetail({ domain, domainDescription, personBehaviors, facets 
         <Typography align="center" display="block" variant="h5">
           설명
         </Typography>
-        <Typography>
-          {domainDescription.split("\n").map((element, index) => (
-            <Typography className={classes.domainDescription} key={index}>
-              {element}
-            </Typography>
-          ))}
-        </Typography>
+        {domainDescription.split("\n").map((element, index) => (
+          <Typography className={classes.domainDescription} key={index}>
+            {element}
+          </Typography>
+        ))}
       </Paper>
       <Paper className={classes.innerPanel} elevation={2}>
         <Typography align="center" display="block" variant="h5">
