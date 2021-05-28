@@ -8,22 +8,26 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import MenuIcon from '@material-ui/icons/Menu';
-import HomeIcon from '@material-ui/icons/Home';
+import MenuIcon from "@material-ui/icons/Menu";
+import HomeIcon from "@material-ui/icons/Home";
 import PersonIcon from "@material-ui/icons/Person";
-import PortraitIcon from '@material-ui/icons/Portrait';
+import PortraitIcon from "@material-ui/icons/Portrait";
 import SpeakerNotesIcon from "@material-ui/icons/SpeakerNotes";
 import { Link } from "react-router-dom";
+import Logo from "asset/sidebar_logo.png";
 
-
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   list: {
     width: 250,
   },
   fullList: {
     width: "auto",
   },
-});
+  logo: {
+    width: "65%",
+    margin: theme.spacing(1.7),
+  },
+}));
 
 export default function SwipeableTemporaryDrawer() {
   const classes = useStyles();
@@ -51,6 +55,8 @@ export default function SwipeableTemporaryDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+      <img className={classes.logo} src={Logo} alt="logo" />
+      <Divider />
       <List>
         <ListItem button component={Link} to="/">
           <ListItemIcon>
@@ -78,15 +84,16 @@ export default function SwipeableTemporaryDrawer() {
           <ListItemText primary="캐릭터 성격 생성기" />
         </ListItem>
       </List>
-      
     </div>
   );
 
   return (
     <div>
-      {['left'].map((anchor) => (
+      {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} id='menu-wrapper'><MenuIcon fontSize='large'/></Button>
+          <Button onClick={toggleDrawer(anchor, true)} id="menu-wrapper">
+            <MenuIcon fontSize="large" />
+          </Button>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}

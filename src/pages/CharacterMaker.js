@@ -6,7 +6,7 @@ import ButtonToAction from "components/ButtonToAction";
 import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
 import BigFive from "asset/BigFive";
 
-// TODO: Ugly readability at domains. Fix it.
+// TODO: Add pyscholgical schema
 const CharacterMaker = () => {
   const classes = useStyles();
   const [isGenerated, setIsGenerated] = useState(false);

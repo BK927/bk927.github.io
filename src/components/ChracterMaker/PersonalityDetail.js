@@ -49,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// TODO: Add domain description, Add more detail about each personalities, Add personality standard
 function PersonalityDetail({ domain, domainDescription, personBehaviors, facets }) {
   const classes = useStyles();
 
