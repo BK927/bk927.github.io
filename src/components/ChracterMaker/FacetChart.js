@@ -12,8 +12,12 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(50),
     borderRadius: "5px",
     overflow: "hidden",
+    minWidth: 0,
     "& * ": {
       transition: "none",
+    },
+    "& canvas": {
+      width: "100% !important",
     },
   },
 }));

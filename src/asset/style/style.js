@@ -121,11 +121,15 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(50),
     borderRadius: "5px",
     overflow: "hidden",
+    minWidth: 0,
     "&&": {
       backgroundColor: theme.palette.background.dp03,
     },
     "& * ": {
       transition: "none",
+    },
+    "& canvas": {
+      width: "100% !important",
     },
   },
   rankingList: {
