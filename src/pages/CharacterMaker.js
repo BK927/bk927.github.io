@@ -1,7 +1,5 @@
 import React, { Fragment, useState } from "react";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import Paper from "@material-ui/core/Paper";
-import useStyles from "asset/style/style";
 import ButtonToAction from "components/ButtonToAction";
 import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
 import BigFive from "asset/BigFive";
@@ -9,9 +7,8 @@ import useDocumentTitle from "hooks/useDocumentTitle";
 
 // TODO: Add pyscholgical schema
 const CharacterMaker = ({ title }) => {
-  const classes = useStyles();
   const [isGenerated, setIsGenerated] = useState(false);
-  const [domains, setDomains] = useState(BigFive["domains"]);
+  const [domains, setDomains] = useState(BigFive);
   useDocumentTitle(title);
 
   const generateRandomStat = () => {
@@ -54,13 +51,7 @@ const CharacterMaker = ({ title }) => {
         startIcon={<CheckCircleIcon />}
         inputType="button"
       />
-      {isGenerated ? (
-        <Paper className={classes.contentBox} elevation={3}>
-          {bigFive}
-        </Paper>
-      ) : (
-        <div style={{ display: "none" }} />
-      )}
+      {isGenerated ? <div>{bigFive}</div> : <div style={{ display: "none" }} />}
     </Fragment>
   );
 };

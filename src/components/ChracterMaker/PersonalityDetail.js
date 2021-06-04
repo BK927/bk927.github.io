@@ -3,12 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
-import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PropTypes from "prop-types";
 import FacetChart from "components/ChracterMaker/FacetChart";
+import ChipList from "components/ChracterMaker/ChipList";
 import { evalBigFiveScore } from "util/BigFiveStandard.js";
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
     padding: theme.spacing(3),
-    backgroundColor: theme.palette.background.dp03,
+    backgroundColor: theme.palette.background.dp02,
   },
   domainTitle: {
     margin: theme.spacing(1.5),
@@ -31,16 +31,13 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   facetPanel: {
-    backgroundColor: theme.palette.background.dp04,
+    backgroundColor: theme.palette.background.dp03,
   },
   innerPanel: {
-    backgroundColor: theme.palette.background.dp04,
+    backgroundColor: theme.palette.background.dp03,
     marginTop: theme.spacing(1.5),
     marginBottom: theme.spacing(1.5),
     padding: theme.spacing(2),
-  },
-  behaviorChip: {
-    margin: theme.spacing(0.5),
   },
   domainDescription: {
     lineHeight: "1.5",
@@ -78,10 +75,6 @@ function PersonalityDetail({ domain, domainDescription, personBehaviors, facets 
     );
   });
 
-  const displayedBehaviors = personBehaviors[domainEval].map((element, index) => {
-    return <Chip className={classes.behaviorChip} label={element} key={index} />;
-  });
-
   return (
     <Paper className={classes.root} elevation={3}>
       <Typography align="center" className={classes.domainTitle} display="block" variant="h4">
@@ -98,12 +91,7 @@ function PersonalityDetail({ domain, domainDescription, personBehaviors, facets 
           </Typography>
         ))}
       </Paper>
-      <Paper className={classes.innerPanel} elevation={2}>
-        <Typography align="center" display="block" variant="h5">
-          보일 수 있는 행동들
-        </Typography>
-        {displayedBehaviors}
-      </Paper>
+      <ChipList title="보일 수 있는 행동들" items={personBehaviors[domainEval]} />
       {facetDescriptions}
     </Paper>
   );

@@ -1,8 +1,6 @@
-function generateRandomRGB() {
-  const getRandomInt = function (max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  };
+import getRandomInt from "util/getRandomInt";
 
+function generateRandomRGB() {
   const red = getRandomInt(256);
   const green = getRandomInt(256);
   const blue = getRandomInt(256);
