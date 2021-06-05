@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Collapse from "@material-ui/core/Collapse";
@@ -14,7 +15,14 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles((theme) => ({
-  subtitle: {
+  header: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  title: {
+    display: "flex",
+    alignItems: "center",
     marginTop: theme.spacing(6),
     marginBottom: theme.spacing(1.5),
   },
@@ -50,7 +58,7 @@ function CopingStyle({ count, name, description, behaviors, examples }) {
     return <li key={index}>{element}</li>;
   });
 
-  const exampleList = examples.slice().map((element, index) => {
+  const exampleList = Array.from(examples).map((element, index) => {
     return <li key={index}>{element}</li>;
   });
 
@@ -62,20 +70,25 @@ function CopingStyle({ count, name, description, behaviors, examples }) {
 
   return (
     <TableContainer>
-      <Typography className={classes.subtitle} variant="h6">
-        <SupervisorAccountIcon />
-        대처 방식{count} : {name}
-      </Typography>
-      <IconButton
-        className={clsx(classes.expand, {
-          [classes.expandOpen]: expanded,
-        })}
-        onClick={handleExpandClick}
-        aria-expanded={expanded}
-        aria-label="show more"
-      >
-        <ExpandMoreIcon />
-      </IconButton>
+      <Box className={classes.header}>
+        <Box className={classes.title}>
+          <SupervisorAccountIcon />
+          <Typography variant="h6">
+            &nbsp;대처 방식{count} : {name}
+          </Typography>
+        </Box>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
+      </Box>
+
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <Table aria-label="simple table">
           <TableBody>

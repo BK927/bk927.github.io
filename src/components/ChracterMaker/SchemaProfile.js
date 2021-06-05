@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
-import SchemaContainer from "components/ChracterMaker/SchemaContainer";
+import SchemaItem from "components/ChracterMaker/SchemaItem";
 import UnconditinalScehma from "asset/UnconditinalScehma";
 import getRandomInt from "util/getRandomInt";
 
@@ -25,7 +25,7 @@ function SchemaProfile({ schemaCount }) {
     const index = getRandomInt(leftSchema.length);
     const schema = leftSchema[index];
     const flag = Boolean(getRandomInt(2));
-    SchemaList.push(<SchemaContainer conditionalFlag={flag} schemaObj={schema} />);
+    SchemaList.push(<SchemaItem key={i} conditionalFlag={flag} schemaObj={schema} />);
     leftSchema = leftSchema.filter(function (value, index, arr) {
       return value !== schema;
     });

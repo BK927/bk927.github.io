@@ -5,7 +5,6 @@ import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
 import SchemaProfile from "components/ChracterMaker/SchemaProfile";
 import BigFive from "asset/BigFive";
 import useDocumentTitle from "hooks/useDocumentTitle";
-import getRandomInt from "util/getRandomInt";
 
 // TODO: Add pyscholgical schema
 const CharacterMaker = ({ title }) => {

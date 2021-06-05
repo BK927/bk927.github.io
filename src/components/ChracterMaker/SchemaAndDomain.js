@@ -1,30 +1,21 @@
 import React from "react";
+import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import SchemaDomain from "asset/SchemaDomain";
-import SchemaCopingStyle from "asset/SchemaCopingStyle";
-import getRandomInt from "util/getRandomInt";
-import CopingStyle from "components/ChracterMaker/CopingStyle";
 import ClassIcon from "@material-ui/icons/Class";
 import DescriptionIcon from "@material-ui/icons/Description";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(1.3),
-    backgroundColor: theme.palette.background.dp03,
-    "& hr": {
-      marginTop: theme.spacing(1.3),
-      marginBottom: theme.spacing(1.3),
-    },
-  },
-  subtitle: {
+  title: {
+    display: "flex",
+    alignItems: "center",
     marginTop: theme.spacing(6),
     marginBottom: theme.spacing(1.5),
   },
@@ -34,39 +25,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SchemaDetail({ schema, description, behaviors, backgrounds, domain, copingStyles }) {
+function SchemaAndDomain({ schema, description, behaviors, backgrounds, domain, copingStyles }) {
   const classes = useStyles();
 
   function createRow(title, content) {
     return { title, content };
   }
 
-  const behaviorsList = behaviors.map((element, index) => <li>{element}</li>);
-  const backgroundList = backgrounds.map((element, index) => <li>{element}</li>);
-
-  const copingStyleCount = getRandomInt(2) + 1;
-
-  let leftStyle = Object.getOwnPropertyNames(SchemaCopingStyle);
-  const styleNodes = [];
-
-  for (let i = 0; i < copingStyleCount; i++) {
-    const index = getRandomInt(leftStyle.length);
-    const styleKey = leftStyle[index];
-    const style = SchemaCopingStyle[styleKey];
-    styleNodes.push(
-      <CopingStyle
-        key={i}
-        count={i + 1}
-        name={styleKey}
-        description={style.description}
-        behaviors={style.behaviors}
-        examples={style.examples[schema]}
-      />
-    );
-    leftStyle = leftStyle.filter(function (value, index, arr) {
-      return value !== style;
-    });
-  }
+  const behaviorsList = behaviors.map((element, index) => <li key={index}>{element}</li>);
+  const backgroundList = backgrounds.map((element, index) => <li key={index}>{element}</li>);
 
   const domainRows = [
     createRow("영역(분류)", domain),
@@ -82,14 +49,17 @@ function SchemaDetail({ schema, description, behaviors, backgrounds, domain, cop
   ];
 
   return (
-    <TableContainer component={Paper} className={classes.root} elevation={2}>
+    <TableContainer>
       <Typography align="center" gutterBottom={true} variant="h5">
         {schema}
       </Typography>
-      <Typography className={classes.subtitle} variant="h6">
+      <Box className={classes.title}>
         <ClassIcon />
-        도식의 영역(분류)
-      </Typography>
+        <Typography className={classes.subtitle} variant="h6">
+          &nbsp;도식의 영역(분류)
+        </Typography>
+      </Box>
+
       <Table aria-label="simple table">
         <TableBody>
           {domainRows.map((row, index) => (
@@ -102,10 +72,13 @@ function SchemaDetail({ schema, description, behaviors, backgrounds, domain, cop
           ))}
         </TableBody>
       </Table>
-      <Typography className={classes.subtitle} variant="h6">
+      <Box className={classes.title}>
         <DescriptionIcon />
-        도식 해설
-      </Typography>
+        <Typography className={classes.subtitle} variant="h6">
+          &nbsp;도식 해설
+        </Typography>
+      </Box>
+
       <Table aria-label="simple table">
         <TableBody>
           {schemaRows.map((row, index) => (
@@ -118,12 +91,11 @@ function SchemaDetail({ schema, description, behaviors, backgrounds, domain, cop
           ))}
         </TableBody>
       </Table>
-      {styleNodes}
     </TableContainer>
   );
 }
 
-SchemaDetail.propTypes = {
+SchemaAndDomain.propTypes = {
   schema: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   behaviors: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -132,4 +104,4 @@ SchemaDetail.propTypes = {
   copingStyles: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default SchemaDetail;
+export default SchemaAndDomain;
