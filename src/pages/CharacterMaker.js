@@ -2,8 +2,10 @@ import React, { Fragment, useState } from "react";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ButtonToAction from "components/ButtonToAction";
 import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
+import SchemaProfile from "components/ChracterMaker/SchemaProfile";
 import BigFive from "asset/BigFive";
 import useDocumentTitle from "hooks/useDocumentTitle";
+import getRandomInt from "util/getRandomInt";
 
 // TODO: Add pyscholgical schema
 const CharacterMaker = ({ title }) => {
@@ -51,7 +53,14 @@ const CharacterMaker = ({ title }) => {
         startIcon={<CheckCircleIcon />}
         inputType="button"
       />
-      {isGenerated ? <div>{bigFive}</div> : <div style={{ display: "none" }} />}
+      {isGenerated ? (
+        <Fragment>
+          {bigFive}
+          <SchemaProfile schemaCount={2} />
+        </Fragment>
+      ) : (
+        <div style={{ display: "none" }} />
+      )}
     </Fragment>
   );
 };
