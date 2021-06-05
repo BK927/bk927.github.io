@@ -19,12 +19,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+    marginTop: theme.spacing(6),
+    marginBottom: theme.spacing(1.5),
   },
   title: {
     display: "flex",
     alignItems: "center",
-    marginTop: theme.spacing(6),
-    marginBottom: theme.spacing(1.5),
   },
   titleCell: {
     fontWeight: "bold",

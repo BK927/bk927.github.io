@@ -5,6 +5,7 @@ import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
 import SchemaProfile from "components/ChracterMaker/SchemaProfile";
 import BigFive from "asset/BigFive";
 import useDocumentTitle from "hooks/useDocumentTitle";
+import getRandomInt from "util/getRandomInt";
 
 // TODO: Add pyscholgical schema
 const CharacterMaker = ({ title }) => {
@@ -55,7 +56,7 @@ const CharacterMaker = ({ title }) => {
       {isGenerated ? (
         <Fragment>
           {bigFive}
-          <SchemaProfile schemaCount={2} />
+          <SchemaProfile schemaCount={getRandomInt(6) + 1} />
         </Fragment>
       ) : (
         <div style={{ display: "none" }} />

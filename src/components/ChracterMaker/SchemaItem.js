@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
       width: "50px",
     },
   },
+  uncondRoot: {
+    width: "50%",
+  },
   container: {
     padding: theme.spacing(1.3),
     backgroundColor: theme.palette.background.dp03,
@@ -48,6 +51,7 @@ function SchemaItem({ schemaObj, conditionalFlag }) {
       const index = getRandomInt(leftCopingStyle.length);
       const key = leftCopingStyle[index];
       const copingStyle = SchemaCopingStyle[key];
+      const examples = copingStyle.examples[schema];
       nodes.push(
         <CopingStyle
           key={i}
@@ -55,11 +59,11 @@ function SchemaItem({ schemaObj, conditionalFlag }) {
           name={key}
           description={copingStyle.description}
           behaviors={copingStyle.behaviors}
-          examples={copingStyle.examples[schema]}
+          examples={examples}
         />
       );
       leftCopingStyle = leftCopingStyle.filter(function (value, index, arr) {
-        return value !== copingStyle;
+        return value !== key;
       });
     }
 
