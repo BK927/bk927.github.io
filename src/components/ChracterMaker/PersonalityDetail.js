@@ -3,10 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
+import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PropTypes from "prop-types";
+import InfoModal from "components/InfoModal";
 import FacetChart from "components/ChracterMaker/FacetChart";
 import ChipList from "components/ChracterMaker/ChipList";
 import { evalBigFiveScore } from "util/BigFiveStandard.js";
@@ -20,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
   domainTitle: {
     margin: theme.spacing(1.5),
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   accHeading: {
     fontSize: theme.typography.pxToRem(15),
@@ -78,20 +83,20 @@ function PersonalityDetail({ domain, domainDescription, personBehaviors, facets 
 
   return (
     <Paper className={classes.root} elevation={3}>
-      <Typography align="center" className={classes.domainTitle} display="block" variant="h4">
-        {domain + " : " + displayedDomainEval}
-      </Typography>
-      <FacetChart facets={facets} />
-      <Paper className={classes.innerPanel} elevation={2}>
-        <Typography align="center" display="block" variant="h5">
-          설명
+      <Box className={classes.domainTitle}>
+        <Typography align="center" display="block" variant="h4">
+          {domain + " : " + displayedDomainEval}
         </Typography>
-        {domainDescription.split("\n").map((element, index) => (
-          <Typography className={classes.domainDescription} key={index}>
-            {element}
-          </Typography>
-        ))}
-      </Paper>
+        <InfoModal
+          title={domain + "이란?"}
+          content={domainDescription.split("\n").map((element, index) => (
+            <Typography className={classes.domainDescription} key={index}>
+              {element}
+            </Typography>
+          ))}
+        />
+      </Box>
+      <FacetChart facets={facets} />
       <ChipList title="보일 수 있는 행동들" items={personBehaviors[domainEval]} />
       {facetDescriptions}
     </Paper>
