@@ -1,5 +1,4 @@
-export const BIGFIVE_LOW_SCORE_BORDER = 35;
-export const BIGFIVE_HIGH_SCORE_BORDER = 65;
+import { BIGFIVE_LOW_SCORE_BORDER, BIGFIVE_HIGH_SCORE_BORDER } from "settings";
 
 export function evalBigFiveScore(score) {
   if (score <= BIGFIVE_LOW_SCORE_BORDER) {

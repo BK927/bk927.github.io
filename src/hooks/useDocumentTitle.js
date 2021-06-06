@@ -1,8 +1,9 @@
 import { useEffect } from "react";
+import { DEFAULT_TITLE } from "settings";
 
 const useDocumentTitle = (title) => {
   useEffect(() => {
-    document.title = title ? title : "BK927의 웹앱 박스";
+    document.title = title ? title + " - " + DEFAULT_TITLE : DEFAULT_TITLE;
   }, [title]);
 };
 
