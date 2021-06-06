@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://bk927.github.io/sitemap.txt
+Sitemap: https://bk927.github.io/sitemap.xml
