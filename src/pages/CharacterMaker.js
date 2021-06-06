@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import ReactGA from "react-ga";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ButtonToAction from "components/ButtonToAction";
 import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
@@ -28,6 +29,11 @@ const CharacterMaker = ({ title }) => {
   };
 
   const generatePersonality = () => {
+    ReactGA.event({
+      category: "캐릭터 성격 생성",
+      action: "Clicked",
+      label: "캐릭터 생성 버튼",
+    });
     setIsGenerated(true);
     allocStatsToDomain();
   };

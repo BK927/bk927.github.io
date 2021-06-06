@@ -2,18 +2,25 @@ import "asset/style/menu.css";
 import "asset/style/font.css";
 import { defaults } from "react-chartjs-2";
 
-import React from "react";
+import React, { useEffect } from "react";
+import ReactGA from "react-ga";
 import { Route } from "react-router-dom";
 import { Home, Portfolio, KakaoAnalyser, CharacterMaker } from "pages";
 import Menu from "components/Menu";
 import useStyles from "asset/style/style";
 import Paper from "@material-ui/core/Paper";
+import usePageTracking from "hooks/usePageTracking";
 
 function App() {
   const classes = useStyles();
+
   defaults.font.size = "16";
   defaults.color = "#fff";
   defaults.plugins.tooltip.displayColors = false;
+
+  useEffect(() => ReactGA.initialize("UA-186818040-4"), []);
+
+  usePageTracking();
 
   /*eslint-disable */
   return (
@@ -26,9 +33,15 @@ function App() {
       <footer>
         <p>
           Made by&nbsp;
-          <a href="https://bustermachinelab.net/" className={classes.link} target="_blank" rel="author">
+          <ReactGA.OutboundLink
+            className={classes.link}
+            eventLabel="bustermachinelab"
+            to="https://bustermachinelab.net/"
+            target="_blank"
+            trackerNames={["footer"]}
+          >
             BK927
-          </a>
+          </ReactGA.OutboundLink>
         </p>
       </footer>
     </Paper>

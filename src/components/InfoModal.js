@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import ReactGA from "react-ga";
 import { makeStyles } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
@@ -34,6 +35,7 @@ export default function InfoModal({ title, content }) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
+    ReactGA.modalview(title);
     setOpen(true);
   };
 

@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import ReactGA from "react-ga";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import ButtonToAction from "components/ButtonToAction.js";
 import KakaoContent from "components/KakaoContent.js";
@@ -39,8 +40,16 @@ function KakaoAnalyser({ title }) {
       return;
     }
 
+    ReactGA.event({
+      category: "카카오톡 분석기",
+      action: "Clicked",
+      label: "파일 업로드",
+      value: file.size,
+    });
+
     const reader = new FileReader();
     reader.onload = (e) => {
+      const benchStart = performance.now();
       const fileContent = e.target.result;
       setUploaded(false);
       const chattingAnalyser = KakaoChattingAnalyser(fileContent);
@@ -137,6 +146,14 @@ function KakaoAnalyser({ title }) {
           ],
         },
       ]);
+
+      const duration = performance.now() - benchStart;
+      ReactGA.timing({
+        category: "카카오톡 분석기",
+        variable: "calculate",
+        value: duration, // in milliseconds
+        label: "분석하는데 걸린 시간",
+      });
     };
     reader.readAsText(file);
   };
