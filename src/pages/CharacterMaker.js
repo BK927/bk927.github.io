@@ -1,12 +1,14 @@
 import React, { Fragment, useState } from "react";
-import ReactGA from "react-ga";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import ButtonToAction from "components/ButtonToAction";
-import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
-import SchemaProfile from "components/ChracterMaker/SchemaProfile";
+
 import BigFive from "asset/BigFive";
-import useDocumentTitle from "hooks/useDocumentTitle";
+import ButtonToAction from "components/ButtonToAction";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
+import ReactGA from "react-ga";
+import ReactHelmet from "components/ReactHelmet";
+import SchemaProfile from "components/ChracterMaker/SchemaProfile";
 import getRandomInt from "util/getRandomInt";
+import useDocumentTitle from "hooks/useDocumentTitle";
 
 // TODO: Add pyscholgical schema
 const CharacterMaker = ({ title }) => {
@@ -52,6 +54,11 @@ const CharacterMaker = ({ title }) => {
 
   return (
     <Fragment>
+        <ReactHelmet
+        title="캐릭터 성격 생성기"
+        description="시나리오 라이팅, 드라마, 영화, 웹소설 쓰기에 도움이 되는 캐릭터 성격 생성기입니다. 가장 권위 있는 심리검사 IPIP-NEO(빅파이브)와 심리도식을 기반으로 랜덤한 성격을 생성합니다. 생성된 성격을 기반으로 입체적인 캐릭터를 정말로 쉽게 만들 수 있습니다."
+        keywords="웹소설 캐릭터 만들기,웹소설 쓰기 어플,웹소설 쓰기,소설 쓰는법,웹소설 쓰는법,시나리오 쓰는법"
+        />
       <ButtonToAction
         title="버튼을 누르면 새로운 캐릭터 프로필을 만들 수 있습니다"
         buttonText="생성하기"

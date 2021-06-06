@@ -1,22 +1,22 @@
 import React, { Fragment, useState } from "react";
-import ReactGA from "react-ga";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import ButtonToAction from "components/ButtonToAction.js";
-import KakaoContent from "components/KakaoContent.js";
-import KakaoChattingAnalyser from "util/KakaoChattingAnalyser.js";
-import Description from "components/kakao_contents/Description";
+
 import BarChart from "components/kakao_contents/BarChart";
-import Ranking from "components/kakao_contents/Ranking";
+import ButtonToAction from "components/ButtonToAction.js";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import Description from "components/kakao_contents/Description";
 import InnnerGrid from "components/kakao_contents/InnnerGrid";
+import KakaoChattingAnalyser from "util/KakaoChattingAnalyser.js";
+import KakaoContent from "components/KakaoContent.js";
+import Ranking from "components/kakao_contents/Ranking";
+import ReactGA from "react-ga";
+import ReactHelmet from "components/ReactHelmet";
 import useStyles from "asset/style/style";
-import useDocumentTitle from "hooks/useDocumentTitle";
 
 // TODO: Add Loading Effect(With useEffect)
 function KakaoAnalyser({ title }) {
   const classes = useStyles();
   const [contents, setContents] = useState([]);
   const [uploaded, setUploaded] = useState(true);
-  useDocumentTitle(title);
 
   const createDescription = function (text, key) {
     return <Description key={key} text={text}></Description>;
@@ -171,6 +171,11 @@ function KakaoAnalyser({ title }) {
 
   return (
     <Fragment>
+        <ReactHelmet
+        title="카카오톡 대화 분석기"
+        description="단체 채팅방에서 오고 간 대화를 분석할 수 있는 툴입니다. 일일 평균 대화 수, 요일 별 평균 채팅량, 참여자 별 채팅량, 이미지 갯수, 유튜브 갯수 등 다양한 분석 결과를 보여줍니다."
+        keywords="카카오톡 대화 분석"
+        />
       {uploaded ? (
         <ButtonToAction
           title="카카오톡 대화 내보내기 기능을 사용해서 파일을 업로드 해 주세요"
