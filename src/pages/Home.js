@@ -35,7 +35,7 @@ const Home = ({ title }) => {
     return (
       <Fragment>
         <ReactHelmet
-        description="개발자 BK927의 개인 포트폴리오와 자바스크립트로 구현된 웹앱들을 모아놓은 사이트입니다. 현재 카카오톡 대화 분석기와 웹소설, 시나리오 캐릭터 성격 생성기를 제공하고 있습니다."
+        description="자바스크립트로 구현된 웹앱들을 모아놓은 사이트입니다. 현재 카카오톡 대화 분석기와 웹소설, 시나리오 캐릭터 성격 생성기를 제공하고 있습니다."
         keywords="BK927"
         />
         <ShowcaseCard
