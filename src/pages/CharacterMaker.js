@@ -59,7 +59,7 @@ const CharacterMaker = ({ title }) => {
           <SchemaProfile schemaCount={getRandomInt(6) + 1} />
         </Fragment>
       ) : (
-        <div style={{ display: "none" }} />
+        <Fragment />
       )}
     </Fragment>
   );

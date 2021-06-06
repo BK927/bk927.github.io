@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.5",
     marginTop: theme.spacing(1.5),
     marginBottom: theme.spacing(1.5),
+    wordBreak: "keep-all",
   },
 }));
 
