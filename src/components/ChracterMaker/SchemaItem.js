@@ -1,15 +1,16 @@
 import React, { Fragment } from "react";
+
+import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
-import SchemaAndDomain from "components/ChracterMaker/SchemaAndDomain";
-import getRandomInt from "util/getRandomInt";
-import UnconditinalScehma from "asset/UnconditinalScehma";
 import ConditionalSchema from "asset/ConditionalSchema";
-import SchemaCopingStyle from "asset/SchemaCopingStyle";
-import AddIcon from "@material-ui/icons/Add";
 import CopingStyle from "components/ChracterMaker/CopingStyle";
 import { Paper } from "@material-ui/core";
+import PropTypes from "prop-types";
+import SchemaAndDomain from "components/ChracterMaker/SchemaAndDomain";
+import SchemaCopingStyle from "asset/SchemaCopingStyle";
+import UnconditinalScehma from "asset/UnconditinalScehma";
+import getRandomInt from "util/getRandomInt";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -85,7 +86,7 @@ function SchemaItem({ schemaObj, conditionalFlag }) {
 
       {conditionalFlag ? (
         <Fragment>
-          <AddIcon className={classes.plusIcon} fontSize="large" />
+          <AddRoundedIcon className={classes.plusIcon} fontSize="large" />
           <Paper className={classes.container} elevation={2}>
             <SchemaAndDomain
               schema={cond.schema}
