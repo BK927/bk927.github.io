@@ -10,28 +10,6 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
     },
   },
-  btaBox: {
-    textAlign: "center",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    height: "auto",
-    margin: "30px auto 30px auto",
-    overflow: "auto",
-    "& > .MuiTypography-root": {
-      margin: theme.spacing(7),
-    },
-    "& > .MuiButton-root": {
-      display: "flex",
-      textAlign: "center",
-      alignItems: "center",
-      margin: "0 auto",
-      borderRadius: "0.25em",
-      fontSize: "1.5rem",
-      transition: "all 0.3s ease-out",
-    },
-  },
   contentBox: {
     position: "relative",
     display: "block",
@@ -66,15 +44,6 @@ const useStyles = makeStyles((theme) => ({
     "& > div > h4": {
       display: "block",
       marginBottom: "15px",
-    },
-  },
-  uploadButton: {
-    "&&": {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.text.primary,
-      padding: theme.spacing(1.6),
-      fontWeight: "600",
-      fontSize: "1.2rem",
     },
   },
   cardTitle: {

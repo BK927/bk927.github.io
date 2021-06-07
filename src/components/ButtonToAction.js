@@ -1,16 +1,54 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
 import { Box } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import useStyles from "asset/style/style";
+import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
+import React from "react";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    textAlign: "center",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    height: "auto",
+    margin: "30px auto 30px auto",
+    overflow: "auto",
+    "& > .MuiTypography-root": {
+      margin: theme.spacing(4),
+    },
+    "& > .MuiButton-root": {
+      display: "flex",
+      textAlign: "center",
+      alignItems: "center",
+      margin: "0 auto",
+      borderRadius: "0.25em",
+      fontSize: "1.5rem",
+      transition: "all 0.3s ease-out",
+    },
+  },
+  title:{
+    wordBreak:"keep-all",
+  },
+  button: {
+    "&&": {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.text.primary,
+      padding: theme.spacing(1.6),
+      fontWeight: "600",
+      fontSize: "1.2rem",
+    },
+  },
+}));
+
 
 function ButtonToAction({ title, buttonText, startIcon, inputType, onChange, onClick }) {
   const classes = useStyles();
 
   return (
-    <Box className={classes.btaBox}>
-      <Typography variant="h3">{title}</Typography>
+    <Box className={classes.root}>
+      <Typography className={classes.title} variant="h4">{title}</Typography>
       <Box>
         <input
           accept=".txt"
@@ -21,7 +59,7 @@ function ButtonToAction({ title, buttonText, startIcon, inputType, onChange, onC
           onClick={onClick}
         />
         <label htmlFor="bta-button">
-          <Button startIcon={startIcon} className={classes.uploadButton} component="span">
+          <Button startIcon={startIcon} className={classes.button} component="span">
             {buttonText}
           </Button>
         </label>
