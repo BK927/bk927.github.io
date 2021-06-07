@@ -2,7 +2,16 @@ import React, { Fragment, useState } from "react";
 
 import ReactHelmet from "components/ReactHelmet";
 import ShowcaseCard from "components/ShowcaseCard";
-import useStyles from "asset/style/style";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(275px, 1fr))",
+    gap: theme.spacing(2),
+    padding: 0,
+  },
+}));
 
 const Home = ({ title }) => {
   const classes = useStyles();
@@ -49,7 +58,7 @@ const Home = ({ title }) => {
       </Fragment>
     );
   });
-  return <div className={classes.cardGrid}>{cardsComponent}</div>;
+  return <div className={classes.root}>{cardsComponent}</div>;
 };
 
 export default Home;

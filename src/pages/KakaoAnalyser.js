@@ -6,7 +6,7 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import Description from "components/kakao_contents/Description";
 import InnnerGrid from "components/kakao_contents/InnnerGrid";
 import KakaoChattingAnalyser from "util/KakaoChattingAnalyser.js";
-import KakaoContent from "components/KakaoContent.js";
+import KakaoContent from "components/kakao_contents/KakaoContent.js";
 import Ranking from "components/kakao_contents/Ranking";
 import ReactGA from "react-ga";
 import ReactHelmet from "components/ReactHelmet";

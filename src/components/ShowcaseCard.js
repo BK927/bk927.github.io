@@ -1,32 +1,42 @@
-import { Link } from "react-router-dom";
-import useStyles from "asset/style/style";
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "&&":{
+      backgroundColor: theme.palette.background.dp02,
+    },
+  },
+  body:{
+    marginTop:12,
+  }
+}));
 
-function ShowcaseCard(props) {
+function ShowcaseCard({title, category, body, to, action}) {
   const classes = useStyles();
 
   return (
-    <Card>
+    <Card className={classes.root}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          {props.title}
+          {title}
         </Typography>
-        <Typography className={classes.cardPost} color="textSecondary">
-          {props.category}
+        <Typography  color="textSecondary">
+          {category}
         </Typography>
-        <Typography variant="body2" component="p">
-          {props.body}
+        <Typography className={classes.body} variant="body2" component="p">
+          {body}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button component={Link} to={props.to} size="small">
-          {props.action}
+        <Button component={Link} to={to} size="small">
+          {action}
         </Button>
       </CardActions>
     </Card>

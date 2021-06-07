@@ -1,16 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  Container: {
-    borderRadius: "10px",
-    maxWidth: "1400px",
-    minWidth: "30vw",
-    marginTop: theme.spacing(6),
-    marginBottom: theme.spacing(6),
-    marginLeft: "auto",
-    marginRight: "auto",
-    padding: theme.spacing(4),
-  },
   loadingCircle: {
     marginTop: theme.spacing(15),
     marginBottom: theme.spacing(15),
@@ -78,18 +68,6 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: "15px",
     },
   },
-  link: {
-    color: theme.palette.secondary.main,
-    textDecoration: "none",
-    fontWeight: "700",
-    "&:hover": {
-      color: theme.palette.secondary.light,
-    },
-    transition: theme.transitions.create(["all"], {
-      duration: theme.transitions.duration.complex,
-      easing: theme.transitions.easing.easeOut,
-    }),
-  },
   uploadButton: {
     "&&": {
       backgroundColor: theme.palette.primary.main,
@@ -102,18 +80,7 @@ const useStyles = makeStyles((theme) => ({
   cardTitle: {
     fontSize: theme.typography.pxToRem(14),
   },
-  cardPost: {
-    marginBottom: 12,
-  },
-  cardGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
-    "& > .MuiPaper-root": {
-      margin: theme.spacing(2),
-      minWidth: 275,
-      backgroundColor: theme.palette.background.dp02,
-    },
-  },
+
   chartContainer: {
     position: "relative",
     margin: "0 auto",

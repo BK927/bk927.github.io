@@ -1,15 +1,40 @@
 import "asset/style/menu.css";
 import "asset/style/font.css";
-import { defaults } from "react-chartjs-2";
 
+import { CharacterMaker, Home, KakaoAnalyser, Portfolio } from "pages";
 import React, { useEffect } from "react";
+
+import Container from '@material-ui/core/Container';
+import Menu from "components/Menu";
+import Paper from "@material-ui/core/Paper";
 import ReactGA from "react-ga";
 import { Route } from "react-router-dom";
-import { Home, Portfolio, KakaoAnalyser, CharacterMaker } from "pages";
-import Menu from "components/Menu";
-import useStyles from "asset/style/style";
-import Paper from "@material-ui/core/Paper";
+import { defaults } from "react-chartjs-2";
+import { makeStyles } from "@material-ui/core/styles";
 import usePageTracking from "hooks/usePageTracking";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: theme.spacing(6),
+    marginBottom: theme.spacing(6),
+  },
+  wrapper:{
+    borderRadius: "10px",
+    padding: theme.spacing(2),
+  },
+  footerLink: {
+    color: theme.palette.secondary.main,
+    textDecoration: "none",
+    fontWeight: "700",
+    "&:hover": {
+      color: theme.palette.secondary.light,
+    },
+    transition: theme.transitions.create(["all"], {
+      duration: theme.transitions.duration.complex,
+      easing: theme.transitions.easing.easeOut,
+    }),
+  },
+}));
 
 function App() {
   const classes = useStyles();
@@ -24,7 +49,8 @@ function App() {
 
   /*eslint-disable */
   return (
-    <Paper elevation={3} className={classes.Container}>
+    <Container className={classes.root} maxWidth="lg" >
+    <Paper className={classes.wrapper} elevation={3} >
       <Menu></Menu>
       <Route exact path="/" component={Home} />
       <Route path="/portfolio" component={() => <Portfolio title="포트폴리오" />} />
@@ -34,7 +60,7 @@ function App() {
         <p>
           Made by&nbsp;
           <ReactGA.OutboundLink
-            className={classes.link}
+            className={classes.footerLink}
             eventLabel="bustermachinelab"
             to="https://bustermachinelab.net/"
             target="_blank"
@@ -45,6 +71,7 @@ function App() {
         </p>
       </footer>
     </Paper>
+    </Container>
   );
 }
 
