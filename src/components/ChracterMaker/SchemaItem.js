@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import AddRoundedIcon from '@material-ui/icons/AddRounded';
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import Box from "@material-ui/core/Box";
 import ConditionalSchema from "asset/ConditionalSchema";
 import CopingStyle from "components/ChracterMaker/CopingStyle";
@@ -16,25 +16,44 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     alignItems: "center",
-    marginTop: theme.spacing(2.5),
-    marginBottom: theme.spacing(2.5),
+    flexDirection: 'row',
+    margin: theme.spacing(2.5, 'auto'),
     "&>:nth-child(odd)": {
       flex: 1,
       alignSelf: "stretch",
     },
     "&>:nth-child(2)": {
-      width: "50px",
+      width: theme.spacing(3),
+      height: '100%',
+      [theme.breakpoints.down('md')]: {
+        width: '100%',
+        height: theme.spacing(3),
+      },
+    },
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
     },
   },
   uncondRoot: {
     width: "50%",
   },
-  container: {
+  item: {
     padding: theme.spacing(1.3),
     backgroundColor: theme.palette.background.dp03,
   },
+  iconWrapper:{
+    position: 'relative',
+    margin: theme.spacing(0),
+  },
   plusIcon: {
-    margin: theme.spacing(1),
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    fontSize: '3rem',
+    [theme.breakpoints.down('md')]: {
+      transform: 'rotate(90deg) translate(-50%, 50%)',
+    },
   },
 }));
 
@@ -73,7 +92,7 @@ function SchemaItem({ schemaObj, conditionalFlag }) {
 
   return (
     <Box className={classes.root}>
-      <Paper className={classes.container} elevation={2}>
+      <Paper className={classes.item} elevation={2}>
         <SchemaAndDomain
           schema={uncond.schema}
           description={uncond.description}
@@ -86,8 +105,10 @@ function SchemaItem({ schemaObj, conditionalFlag }) {
 
       {conditionalFlag ? (
         <Fragment>
-          <AddRoundedIcon className={classes.plusIcon} fontSize="large" />
-          <Paper className={classes.container} elevation={2}>
+          <div className={classes.iconWrapper}>
+            <AllInclusiveIcon className={classes.plusIcon} fontSize="large" />
+          </div>
+          <Paper className={classes.item} elevation={2}>
             <SchemaAndDomain
               schema={cond.schema}
               description={cond.description}

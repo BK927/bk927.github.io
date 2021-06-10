@@ -77,7 +77,7 @@ const CharacterMaker = ({ title }) => {
       {isGenerated ? (
         <Box className={classes.root}>
           {bigFive}
-          {/* <SchemaProfile schemaCount={getRandomInt(6) + 1} /> */}
+          <SchemaProfile schemaCount={getRandomInt(6) + 1} />
         </Box>
       ) : (
         <Fragment />

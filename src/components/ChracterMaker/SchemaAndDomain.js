@@ -1,18 +1,21 @@
-import React from "react";
 import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
+import ClassIcon from "@material-ui/icons/Class";
+import DescriptionIcon from "@material-ui/icons/Description";
+import PropTypes from "prop-types";
+import React from "react";
+import SchemaDomain from "asset/SchemaDomain";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
-import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
-import SchemaDomain from "asset/SchemaDomain";
-import ClassIcon from "@material-ui/icons/Class";
-import DescriptionIcon from "@material-ui/icons/Description";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: theme.spacing(1.5, 'auto'),
+  },
   title: {
     display: "flex",
     alignItems: "center",
@@ -50,7 +53,7 @@ function SchemaAndDomain({ schema, description, behaviors, backgrounds, domain, 
 
   return (
     <TableContainer>
-      <Typography align="center" gutterBottom={true} variant="h5">
+      <Typography align="center" className={classes.root} gutterBottom={true} variant="h5">
         {schema}
       </Typography>
       <Box className={classes.title}>

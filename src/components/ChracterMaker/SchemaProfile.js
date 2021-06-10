@@ -1,14 +1,14 @@
-import React from "react";
 import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import PropTypes from "prop-types";
+import { Fragment } from "react";
 import InfoModal from "components/InfoModal";
+import Paper from "@material-ui/core/Paper";
+import PropTypes from "prop-types";
+import React from "react";
 import SchemaItem from "components/ChracterMaker/SchemaItem";
+import Typography from "@material-ui/core/Typography";
 import UnconditinalScehma from "asset/UnconditinalScehma";
 import getRandomInt from "util/getRandomInt";
-import { Fragment } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,10 +24,13 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(4),
     justifyContent: "center",
   },
-  halfContainer: {
+  uncondSchemas: {
     display: "grid",
-    columnGap: theme.spacing(8.2),
+    columnGap: theme.spacing(2.6),
     gridTemplateColumns: "repeat(2, 1fr)",
+    [theme.breakpoints.down('md')]: {
+      gridTemplateColumns: "repeat(1, 1fr)",
+    },
   },
 }));
 
@@ -79,7 +82,7 @@ function SchemaProfile({ schemaCount }) {
         <InfoModal title={modalTitle} content={modalContent} />
       </Box>
       {combinedSchemaList}
-      <Box className={classes.halfContainer}>{singleSchemaList}</Box>
+      <Box className={classes.uncondSchemas}>{singleSchemaList}</Box>
     </Paper>
   );
 }

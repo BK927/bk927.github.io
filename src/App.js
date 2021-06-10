@@ -15,8 +15,8 @@ import usePageTracking from "hooks/usePageTracking";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: theme.spacing(6),
-    marginBottom: theme.spacing(6),
+    margin: theme.spacing(6, 'auto'),
+    width:'1020px',
     maxWidth: '100vw',
   },
   wrapper:{
