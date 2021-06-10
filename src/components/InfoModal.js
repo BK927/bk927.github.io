@@ -31,12 +31,12 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(4),
   },
   content: {
-    maxHeight:'60vh',
+    maxHeight:'50vh',
     overflow: 'auto',
   }
 }));
 
-export default function InfoModal({ title, content }) {
+export default function InfoModal({ title, content, icon }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -52,7 +52,7 @@ export default function InfoModal({ title, content }) {
   return (
     <Fragment>
       <IconButton component="span" onClick={handleOpen}>
-        <InfoOutlinedIcon />
+        {icon}
       </IconButton>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -83,4 +83,9 @@ export default function InfoModal({ title, content }) {
 InfoModal.proptype = {
   title: PropTypes.string.isRequired,
   content: PropTypes.node.isRequired,
+  icon: PropTypes.node,
+};
+
+InfoModal.defaultProps = {
+  icon:<InfoOutlinedIcon />,
 };
