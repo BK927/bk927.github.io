@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: theme.spacing(6),
     marginBottom: theme.spacing(6),
+    maxWidth: '100vw',
   },
   wrapper:{
     borderRadius: "10px",
@@ -49,7 +50,7 @@ function App() {
 
   /*eslint-disable */
   return (
-    <Container className={classes.root} maxWidth="lg" >
+    <Container className={classes.root} >
     <Paper className={classes.wrapper} elevation={3} >
       <Menu></Menu>
       <Route exact path="/" component={Home} />
