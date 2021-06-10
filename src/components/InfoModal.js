@@ -1,15 +1,16 @@
-import React, { useState, Fragment } from "react";
-import ReactGA from "react-ga";
-import { makeStyles } from "@material-ui/core/styles";
-import Divider from "@material-ui/core/Divider";
-import Paper from "@material-ui/core/Paper";
-import Modal from "@material-ui/core/Modal";
-import Typography from "@material-ui/core/Typography";
+import React, { Fragment, useState } from "react";
+
 import Backdrop from "@material-ui/core/Backdrop";
+import Divider from "@material-ui/core/Divider";
 import Fade from "@material-ui/core/Fade";
-import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import IconButton from "@material-ui/core/IconButton";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import Modal from "@material-ui/core/Modal";
+import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
+import ReactGA from "react-ga";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -21,13 +22,18 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.dp02,
     padding: theme.spacing(4),
     lineHeight: "1.5",
-    width: "40vw",
+    width: '1020px',
+    maxWidth: '100%',
     wordBreak: "keep-all",
   },
   divider: {
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(4),
   },
+  content: {
+    maxHeight:'60vh',
+    overflow: 'auto',
+  }
 }));
 
 export default function InfoModal({ title, content }) {
@@ -66,7 +72,7 @@ export default function InfoModal({ title, content }) {
               {title}
             </Typography>
             <Divider className={classes.divider} />
-            <div>{content}</div>
+            <div className={classes.content}>{content}</div>
           </Paper>
         </Fade>
       </Modal>

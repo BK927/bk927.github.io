@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 
 import ReactHelmet from "components/ReactHelmet";
 import ShowcaseCard from "components/ShowcaseCard";
@@ -13,11 +13,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// TODO: fix key warning
 const Home = ({ title }) => {
   const classes = useStyles();
 
-  // eslint-disable-next-line
-  const [cards, setCards] = useState([
+  const cards = [
     {
       title: "개발 포트폴리오",
       category: "포트폴리오",
@@ -39,7 +39,8 @@ const Home = ({ title }) => {
       action: "사용하기",
       to: "/character-maker",
     },
-  ]);
+  ];
+  
   const cardsComponent = cards.map((element, index) => {
     return (
       <Fragment>
@@ -48,7 +49,7 @@ const Home = ({ title }) => {
         keywords="BK927"
         />
         <ShowcaseCard
-          key={"card" + String(index)}
+          key={index}
           title={element.title}
           category={element.category}
           body={element.body}

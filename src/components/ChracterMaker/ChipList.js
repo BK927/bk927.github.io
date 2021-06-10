@@ -1,9 +1,9 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
+import React from "react";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +24,7 @@ function ChipList({ title, items }) {
   const classes = useStyles();
 
   const chips = items.map((element, index) => {
-    return <Chip className={classes.chip} label={element} key={index} />;
+    return <Chip component='div' className={classes.chip} label={element} key={index} />;
   });
 
   return (

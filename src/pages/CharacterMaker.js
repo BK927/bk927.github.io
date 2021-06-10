@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 
 import BigFive from "asset/BigFive";
+import { Box } from "@material-ui/core";
 import ButtonToAction from "components/ButtonToAction";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
@@ -8,13 +9,20 @@ import ReactGA from "react-ga";
 import ReactHelmet from "components/ReactHelmet";
 import SchemaProfile from "components/ChracterMaker/SchemaProfile";
 import getRandomInt from "util/getRandomInt";
-import useDocumentTitle from "hooks/useDocumentTitle";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width:"100%",
+  },
+}));
 
 // TODO: Add pyscholgical schema
 const CharacterMaker = ({ title }) => {
+  const classes = useStyles();
+
   const [isGenerated, setIsGenerated] = useState(false);
   const [domains, setDomains] = useState(BigFive);
-  useDocumentTitle(title);
 
   const generateRandomStat = () => {
     return Math.floor(Math.random() * Math.floor(100));
@@ -67,10 +75,10 @@ const CharacterMaker = ({ title }) => {
         inputType="button"
       />
       {isGenerated ? (
-        <Fragment>
+        <Box className={classes.root}>
           {bigFive}
-          <SchemaProfile schemaCount={getRandomInt(6) + 1} />
-        </Fragment>
+          {/* <SchemaProfile schemaCount={getRandomInt(6) + 1} /> */}
+        </Box>
       ) : (
         <Fragment />
       )}

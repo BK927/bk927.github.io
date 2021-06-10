@@ -2,12 +2,10 @@ import React, { Fragment } from "react";
 
 import Paper from "@material-ui/core/Paper";
 import ReactHelmet from "components/ReactHelmet";
-import useDocumentTitle from "hooks/useDocumentTitle";
 import useStyles from "asset/style/style";
 
 const Portfolio = ({ title }) => {
   const classes = useStyles();
-  useDocumentTitle(title);
 
   return (
     <Fragment>

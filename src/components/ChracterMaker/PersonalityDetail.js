@@ -1,17 +1,17 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import PropTypes from "prop-types";
-import InfoModal from "components/InfoModal";
-import FacetChart from "components/ChracterMaker/FacetChart";
 import ChipList from "components/ChracterMaker/ChipList";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import FacetChart from "components/ChracterMaker/FacetChart";
+import InfoModal from "components/InfoModal";
+import Paper from "@material-ui/core/Paper";
+import PropTypes from "prop-types";
+import React from "react";
+import Typography from "@material-ui/core/Typography";
 import { evalBigFiveScore } from "util/BigFiveStandard.js";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
