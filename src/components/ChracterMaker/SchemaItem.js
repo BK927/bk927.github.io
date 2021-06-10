@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     flexDirection: 'row',
+    width:'100%',
     margin: theme.spacing(2.5, 'auto'),
     "&>:nth-child(odd)": {
       flex: 1,
@@ -36,14 +37,11 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'column',
     },
   },
-  uncondRoot: {
-    width: "50%",
-  },
   item: {
     padding: theme.spacing(1.3),
     backgroundColor: theme.palette.background.dp03,
   },
-  iconWrapper:{
+  iconWrapper: {
     position: 'relative',
     margin: theme.spacing(0),
   },
@@ -127,9 +125,8 @@ function SchemaItem({ schemaObj, conditionalFlag }) {
       {conditionalFlag ? (
         <Fragment>
           <div className={classes.iconWrapper}>
-           <div  className={classes.plusIconButton} >
-           <InfoModal title={modalTitle} content={modalContent} icon={<AllInclusiveIcon style={{ fontSize: '3rem' }}/>}/>
-              
+            <div className={classes.plusIconButton} >
+              <InfoModal title={modalTitle} content={modalContent} icon={<AllInclusiveIcon style={{ fontSize: '3rem' }} />} />
             </div>
           </div>
           <Paper className={classes.item} elevation={2}>

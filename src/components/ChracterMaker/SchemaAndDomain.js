@@ -1,6 +1,8 @@
-import Box from "@material-ui/core/Box";
-import ClassIcon from "@material-ui/icons/Class";
+import CollapseContent from "components/ChracterMaker/CollapseContent"
 import DescriptionIcon from "@material-ui/icons/Description";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import PropTypes from "prop-types";
 import React from "react";
 import SchemaDomain from "asset/SchemaDomain";
@@ -16,27 +18,45 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(1.5, 'auto'),
   },
+  header: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: theme.spacing(6),
+    marginBottom: theme.spacing(1.5),
+  },
   title: {
     display: "flex",
     alignItems: "center",
-    marginTop: theme.spacing(6),
-    marginBottom: theme.spacing(1.5),
   },
   titleCell: {
     fontWeight: "bold",
     whiteSpace: "nowrap",
+  },
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: "rotate(180deg)",
   },
 }));
 
 function SchemaAndDomain({ schema, description, behaviors, backgrounds, domain, copingStyles }) {
   const classes = useStyles();
 
+
   function createRow(title, content) {
     return { title, content };
   }
 
-  const behaviorsList = behaviors.map((element, index) => <li key={index}>{element}</li>);
-  const backgroundList = backgrounds.map((element, index) => <li key={index}>{element}</li>);
+  const generateList = (element, index) => <ListItem><ListItemText key={index} primary={element} /></ListItem>;
+
+  const behaviorsList = behaviors.map(generateList);
+  const backgroundList = backgrounds.map(generateList);
 
   const domainRows = [
     createRow("영역(분류)", domain),
@@ -47,42 +67,11 @@ function SchemaAndDomain({ schema, description, behaviors, backgrounds, domain, 
 
   const schemaRows = [
     createRow("설명", description),
-    createRow("행동 예시", <ul>{behaviorsList}</ul>),
+    createRow("행동 예시", <List dense>{behaviorsList}</List>),
     createRow("과거 배경 예시", <ul>{backgroundList}</ul>),
   ];
 
-  return (
-    <TableContainer>
-      <Typography align="center" className={classes.root} gutterBottom={true} variant="h5">
-        {schema}
-      </Typography>
-      <Box className={classes.title}>
-        <ClassIcon />
-        <Typography className={classes.subtitle} variant="h6">
-          &nbsp;도식의 영역(분류)
-        </Typography>
-      </Box>
-
-      <Table aria-label="simple table">
-        <TableBody>
-          {domainRows.map((row, index) => (
-            <TableRow key={index}>
-              <TableCell className={classes.titleCell} align="left">
-                {row.title}
-              </TableCell>
-              <TableCell align="left">{row.content}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <Box className={classes.title}>
-        <DescriptionIcon />
-        <Typography className={classes.subtitle} variant="h6">
-          &nbsp;도식 해설
-        </Typography>
-      </Box>
-
-      <Table aria-label="simple table">
+  const schemaSection = (      <TableContainer>      <Table aria-label="schema table">
         <TableBody>
           {schemaRows.map((row, index) => (
             <TableRow key={index}>
@@ -93,8 +82,29 @@ function SchemaAndDomain({ schema, description, behaviors, backgrounds, domain, 
             </TableRow>
           ))}
         </TableBody>
-      </Table>
-    </TableContainer>
+      </Table></TableContainer>);
+
+const domainSection = (      <TableContainer>      <Table aria-label="domain table">
+<TableBody>
+  {domainRows.map((row, index) => (
+    <TableRow key={index}>
+      <TableCell className={classes.titleCell} align="left">
+        {row.title}
+      </TableCell>
+      <TableCell align="left">{row.content}</TableCell>
+    </TableRow>
+  ))}
+</TableBody>
+</Table></TableContainer>);
+
+  return (
+    <div>
+      <Typography align="center" className={classes.root} gutterBottom={true} variant="h5">
+        {schema}
+      </Typography>
+      <CollapseContent title={"도식 설명"} icon={<DescriptionIcon />} content={schemaSection} />
+      <CollapseContent title={"도식의 영역(분류)"} icon={<DescriptionIcon />} content={domainSection} />
+    </div>
   );
 }
 
