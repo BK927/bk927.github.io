@@ -1,4 +1,5 @@
 test_files
+.prettierrc.js
 .pytest_cache
 .DS_STORE
 node_modules

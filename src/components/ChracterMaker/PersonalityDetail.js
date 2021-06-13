@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
     padding: theme.spacing(3),
-    backgroundColor: theme.palette.background.dp02,
+    backgroundColor: theme.palette.background.dp01,
   },
   domainTitle: {
     margin: theme.spacing(1.5),
@@ -36,10 +36,10 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   facetPanel: {
-    backgroundColor: theme.palette.background.dp03,
+    backgroundColor: theme.palette.background.dp02,
   },
   innerPanel: {
-    backgroundColor: theme.palette.background.dp03,
+    backgroundColor: theme.palette.background.dp02,
     marginTop: theme.spacing(1.5),
     marginBottom: theme.spacing(1.5),
     padding: theme.spacing(2),

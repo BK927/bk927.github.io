@@ -1,9 +1,42 @@
-import React, { useEffect, useState, useRef } from "react";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+import React, { useEffect, useRef, useState } from "react";
+
 import CircularProgress from "@material-ui/core/CircularProgress";
-import useStyles from "asset/style/style";
+import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  contentBox: {
+    position: "relative",
+    display: "block",
+    boxSizing: "content-box",
+    borderRadius: "5px",
+    overflow: "hidden",
+    height: "max-content",
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+    marginLeft: "auto",
+    marginRight: "auto",
+    padding: theme.spacing(2),
+    "&&": {
+      backgroundColor: theme.palette.background.dp01,
+    },
+    "& h5": {
+      display: "block",
+      marginBottom: theme.spacing(3.5),
+    },
+  },
+  loadingCircle: {
+    marginTop: theme.spacing(15),
+    marginBottom: theme.spacing(15),
+    marginLeft: "auto",
+    marginRight: "auto",
+    "&&": {
+      display: "block",
+    },
+  },
+}));
 
 //TODO: Improve response speed(loading screen), Fix TypeError
 function KakaoContent({ index, title, items }) {
@@ -29,7 +62,12 @@ function KakaoContent({ index, title, items }) {
   }, [items]);
 
   return (
-    <Paper className={classes.contentBox} elevation={3} key={index} ref={mounted}>
+    <Paper
+      className={classes.contentBox}
+      elevation={3}
+      key={index}
+      ref={mounted}
+    >
       <Typography variant="h5">{title}</Typography>
       {components}
     </Paper>

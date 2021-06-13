@@ -50,9 +50,7 @@ function CollapseContent({ title, icon, content }) {
       <Box className={classes.header}>
         <Box className={classes.title}>
           {icon}
-          <Typography variant="h6">
-            {title}
-          </Typography>
+          <Typography variant="h6">{title}</Typography>
         </Box>
         <IconButton
           className={clsx(classes.expand, {

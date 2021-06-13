@@ -13,24 +13,25 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: theme.spacing(50),
     borderRadius: "5px",
     overflow: "hidden",
-    width:"100%",
-    paddingBottom:'56.25%', /* 16:9 */
+    width: "100%",
+    paddingBottom: "56.25%" /* 16:9 */,
     height: 0,
     minWidth: 0,
+    backgroundColor: theme.palette.background.dp02,
     "& * ": {
       transition: "none",
     },
     "& canvas": {
-      position: 'absolute',
+      position: "absolute",
       top: 0,
       left: 0,
-      width: '100% !important',
-      height: '100% !important',
+      width: "100% !important",
+      height: "100% !important",
     },
   },
 }));
 
-function BarChart({data}) {
+function BarChart({ data }) {
   const classes = useStyles();
 
   const chartData = {

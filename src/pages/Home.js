@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 
+import Paper from "@material-ui/core/Paper";
 import ReactHelmet from "components/ReactHelmet";
 import ShowcaseCard from "components/ShowcaseCard";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "repeat(auto-fit, minmax(275px, 1fr))",
     gap: theme.spacing(2),
     padding: 0,
+  },
+  wrapper: {
+    padding: theme.spacing(5, 2),
   },
 }));
 
@@ -40,13 +44,13 @@ const Home = ({ title }) => {
       to: "/character-maker",
     },
   ];
-  
+
   const cardsComponent = cards.map((element, index) => {
     return (
       <Fragment>
         <ReactHelmet
-        description="자바스크립트로 구현된 웹앱들을 모아놓은 사이트입니다. 현재 카카오톡 대화 분석기와 웹소설, 시나리오 캐릭터 성격 생성기를 제공하고 있습니다."
-        keywords="BK927"
+          description="자바스크립트로 구현된 웹앱들을 모아놓은 사이트입니다. 현재 카카오톡 대화 분석기와 웹소설, 시나리오 캐릭터 성격 생성기를 제공하고 있습니다."
+          keywords="BK927"
         />
         <ShowcaseCard
           key={index}
@@ -59,7 +63,11 @@ const Home = ({ title }) => {
       </Fragment>
     );
   });
-  return <div className={classes.root}>{cardsComponent}</div>;
+  return (
+    <Paper className={classes.wrapper} elevation={3}>
+      <div className={classes.root}>{cardsComponent}</div>
+    </Paper>
+  );
 };
 
 export default Home;

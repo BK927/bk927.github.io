@@ -4,9 +4,8 @@ import "asset/style/font.css";
 import { CharacterMaker, Home, KakaoAnalyser, Portfolio } from "pages";
 import React, { useEffect } from "react";
 
-import Container from '@material-ui/core/Container';
+import Container from "@material-ui/core/Container";
 import Menu from "components/Menu";
-import Paper from "@material-ui/core/Paper";
 import ReactGA from "react-ga";
 import { Route } from "react-router-dom";
 import { defaults } from "react-chartjs-2";
@@ -15,13 +14,9 @@ import usePageTracking from "hooks/usePageTracking";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(6, 'auto'),
-    width:'1020px',
-    maxWidth: '100vw',
-  },
-  wrapper:{
-    borderRadius: "10px",
-    padding: theme.spacing(2),
+    margin: theme.spacing(6, "auto"),
+    width: "1020px",
+    maxWidth: "100vw",
   },
   footerLink: {
     color: theme.palette.secondary.main,
@@ -40,7 +35,15 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
 
-  defaults.font.size = "16";
+  // defaults.font = function(context) {
+  //   var width = context.chart.width;
+  //   var size = Math.round(width / 32);
+  //   console.log(size);
+  //   return {
+  //     size: 15,
+  //     weight: 600
+  //   };
+  // };
   defaults.color = "#fff";
   defaults.plugins.tooltip.displayColors = false;
 
@@ -50,13 +53,21 @@ function App() {
 
   /*eslint-disable */
   return (
-    <Container className={classes.root} >
-    <Paper className={classes.wrapper} elevation={3} >
+    <Container className={classes.root}>
       <Menu></Menu>
       <Route exact path="/" component={Home} />
-      <Route path="/portfolio" component={() => <Portfolio title="포트폴리오" />} />
-      <Route path="/kakao-analyser" component={() => <KakaoAnalyser title="카카오톡 대화 분석기" />} />
-      <Route path="/character-maker" component={() => <CharacterMaker title="캐릭터 성격 생성기" />} />
+      <Route
+        path="/portfolio"
+        component={() => <Portfolio title="포트폴리오" />}
+      />
+      <Route
+        path="/kakao-analyser"
+        component={() => <KakaoAnalyser title="카카오톡 대화 분석기" />}
+      />
+      <Route
+        path="/character-maker"
+        component={() => <CharacterMaker title="캐릭터 성격 생성기" />}
+      />
       <footer>
         <p>
           Made by&nbsp;
@@ -71,7 +82,6 @@ function App() {
           </ReactGA.OutboundLink>
         </p>
       </footer>
-    </Paper>
     </Container>
   );
 }

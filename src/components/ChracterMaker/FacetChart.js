@@ -71,11 +71,11 @@ function FacetChart({ facets }) {
     },
   };
 
-  const legend = {};
+
 
   return (
     <Box className={classes.root}>
-      <Bar data={chartData} options={options} legend={legend} />
+      <Bar data={chartData} options={options} />
     </Box>
   );
 }

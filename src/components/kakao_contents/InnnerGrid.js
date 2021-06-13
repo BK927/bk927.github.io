@@ -1,7 +1,26 @@
-import React from "react";
 import Paper from "@material-ui/core/Paper";
-import useStyles from "asset/style/style";
 import PropTypes from "prop-types";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexBasis: "0",
+    gap: theme.spacing(2),
+    alignContent: "space-between",
+    "& > div": {
+      backgroundColor: theme.palette.background.dp02,
+      borderRadius: "5px",
+      padding: "8px 15px",
+      flex: "1",
+    },
+    "& > div > h4": {
+      display: "block",
+      marginBottom: "15px",
+    },
+  },
+}));
 
 function InnnerGrid({ cells }) {
   const classes = useStyles();
@@ -15,7 +34,7 @@ function InnnerGrid({ cells }) {
     );
   });
 
-  return <div className={classes.innerGrid}>{cellList}</div>;
+  return <div className={classes.root}>{cellList}</div>;
 }
 
 InnnerGrid.propTypes = {

@@ -1,7 +1,31 @@
+import PropTypes from "prop-types";
 import React from "react";
-import useStyles from "asset/style/style";
-import PropTypes from 'prop-types';
+import { makeStyles } from "@material-ui/core/styles";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    alignContent: "flex-start",
+    width: "100%",
+    padding: 0,
+    listStyleType: "none",
+    "& li": {
+      backgroundColor: theme.palette.background.dp02,
+      padding: theme.spacing(1.5),
+      margin: "0.3rem 0",
+      overflow: "visible",
+      whiteSpace: "nowrap",
+      transition: theme.transitions.create(["all"], {
+        duration: theme.transitions.duration.complex,
+        easing: theme.transitions.easing.easeOut,
+      }),
+    },
+    "& li:hover": {
+      backgroundColor: theme.palette.background.dp06,
+    },
+  },
+}));
 
 function Ranking(props) {
   const classes = useStyles();
@@ -15,12 +39,12 @@ function Ranking(props) {
     const width = String((element[1] * 100) / largestNum) + "%";
     return (
       <li key={index} style={{ width: width }}>
-        {String(index) + '. ' + textContent}
+        {String(index) + ". " + textContent}
       </li>
     );
   });
 
-  return <ol className={classes.rankingList}>{liTags}</ol>;
+  return <ol className={classes.root}>{liTags}</ol>;
 }
 
 Ranking.propTypes = {

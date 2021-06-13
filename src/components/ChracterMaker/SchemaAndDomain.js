@@ -1,22 +1,19 @@
-import CollapseContent from "components/ChracterMaker/CollapseContent"
+import React, { Fragment } from "react";
+
+import CollapseContent from "components/ChracterMaker/CollapseContent";
 import DescriptionIcon from "@material-ui/icons/Description";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import Divider from "@material-ui/core/Divider";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 import PropTypes from "prop-types";
-import React from "react";
 import SchemaDomain from "asset/SchemaDomain";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(1.5, 'auto'),
+    margin: theme.spacing(1.5, "auto"),
   },
   header: {
     display: "flex",
@@ -43,17 +40,39 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: "rotate(180deg)",
   },
+  list: {
+    "& .MuiListItemText-primary": {
+      fontWeight: 500,
+    },
+    "& .MuiListItemText-secondary": {
+      color: "#F2F2F2",
+      marginTop: theme.spacing(1),
+    },
+  },
 }));
 
-function SchemaAndDomain({ schema, description, behaviors, backgrounds, domain, copingStyles }) {
+function SchemaAndDomain({
+  schema,
+  description,
+  behaviors,
+  backgrounds,
+  domain,
+  copingStyles,
+}) {
   const classes = useStyles();
 
-
   function createRow(title, content) {
-    return { title, content };
+    return (
+      <Fragment>
+        <ListItem>
+          <ListItemText primary={title} secondary={content} />
+        </ListItem>
+        <Divider component="li" />
+      </Fragment>
+    );
   }
 
-  const generateList = (element, index) => <ListItem><ListItemText key={index} primary={element} /></ListItem>;
+  const generateList = (element, index) => <li key={index}>{element}</li>;
 
   const behaviorsList = behaviors.map(generateList);
   const backgroundList = backgrounds.map(generateList);
@@ -67,43 +86,30 @@ function SchemaAndDomain({ schema, description, behaviors, backgrounds, domain, 
 
   const schemaRows = [
     createRow("설명", description),
-    createRow("행동 예시", <List dense>{behaviorsList}</List>),
+    createRow("행동 예시", <ul>{behaviorsList}</ul>),
     createRow("과거 배경 예시", <ul>{backgroundList}</ul>),
   ];
 
-  const schemaSection = (      <TableContainer>      <Table aria-label="schema table">
-        <TableBody>
-          {schemaRows.map((row, index) => (
-            <TableRow key={index}>
-              <TableCell className={classes.titleCell} align="left">
-                {row.title}
-              </TableCell>
-              <TableCell align="left">{row.content}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table></TableContainer>);
-
-const domainSection = (      <TableContainer>      <Table aria-label="domain table">
-<TableBody>
-  {domainRows.map((row, index) => (
-    <TableRow key={index}>
-      <TableCell className={classes.titleCell} align="left">
-        {row.title}
-      </TableCell>
-      <TableCell align="left">{row.content}</TableCell>
-    </TableRow>
-  ))}
-</TableBody>
-</Table></TableContainer>);
-
   return (
     <div>
-      <Typography align="center" className={classes.root} gutterBottom={true} variant="h5">
+      <Typography
+        align="center"
+        className={classes.root}
+        gutterBottom={true}
+        variant="h5"
+      >
         {schema}
       </Typography>
-      <CollapseContent title={"도식 설명"} icon={<DescriptionIcon />} content={schemaSection} />
-      <CollapseContent title={"도식의 영역(분류)"} icon={<DescriptionIcon />} content={domainSection} />
+      <CollapseContent
+        title={"도식 설명"}
+        icon={<DescriptionIcon />}
+        content={<List className={classes.list}>{schemaRows}</List>}
+      />
+      <CollapseContent
+        title={"도식의 영역(분류)"}
+        icon={<DescriptionIcon />}
+        content={<List className={classes.list}>{domainRows}</List>}
+      />
     </div>
   );
 }
