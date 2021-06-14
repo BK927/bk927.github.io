@@ -35,15 +35,6 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
 
-  // defaults.font = function(context) {
-  //   var width = context.chart.width;
-  //   var size = Math.round(width / 32);
-  //   console.log(size);
-  //   return {
-  //     size: 15,
-  //     weight: 600
-  //   };
-  // };
   defaults.color = "#fff";
   defaults.plugins.tooltip.displayColors = false;
 
