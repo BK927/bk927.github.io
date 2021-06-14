@@ -9,7 +9,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
+    width: "90%",
+    margin: "auto auto",
   },
   margin: {
     height: theme.spacing(3),
