@@ -77,7 +77,19 @@ const CharacterMaker = ({ title }) => {
         startIcon={<CheckCircleIcon />}
         inputType="button"
       />
-      <SchemaSlider onChange={(e, value) => (charaLevel.current = value)} />
+      <SchemaSlider
+        onChange={(e, value) => {
+          if (charaLevel.current !== value) {
+            ReactGA.event({
+              category: "캐릭터 성격 생성",
+              action: "Clicked",
+              value: value,
+              label: "캐릭터 입체도 슬라이드",
+            });
+          }
+          charaLevel.current = value;
+        }}
+      />
       {isGenerated ? (
         <Box className={classes.root}>
           {bigFive}
