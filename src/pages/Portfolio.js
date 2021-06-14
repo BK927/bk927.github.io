@@ -9,11 +9,11 @@ const Portfolio = ({ title }) => {
 
   return (
     <Fragment>
-              <ReactHelmet
+      <ReactHelmet
         title="포트폴리오"
         description="BK927의 개인 개발 포트폴리오입니다."
         keywords="BK927 포트폴리오"
-        />
+      />
       <h2>포트폴리오</h2>{" "}
       <Paper className={classes.contentBox} elevation={3}>
         <h4>작성 중</h4>

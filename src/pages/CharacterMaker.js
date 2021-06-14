@@ -4,6 +4,7 @@ import BigFive from "asset/BigFive";
 import { Box } from "@material-ui/core";
 import ButtonToAction from "components/ButtonToAction";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import ExportToImg from "components/ExportToImg";
 import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
 import ReactGA from "react-ga";
 import ReactHelmet from "components/ReactHelmet";
@@ -25,7 +26,7 @@ const CharacterMaker = ({ title }) => {
   const [isGenerated, setIsGenerated] = useState(false);
   const [domains, setDomains] = useState(BigFive);
 
-  let charaLevel = useRef(4);
+  let charaLevel = useRef(2);
 
   const generateRandomStat = () => {
     return Math.floor(Math.random() * Math.floor(100));
@@ -77,6 +78,7 @@ const CharacterMaker = ({ title }) => {
         startIcon={<CheckCircleIcon />}
         inputType="button"
       />
+
       <SchemaSlider
         onChange={(e, value) => {
           if (charaLevel.current !== value) {
@@ -91,7 +93,8 @@ const CharacterMaker = ({ title }) => {
         }}
       />
       {isGenerated ? (
-        <Box className={classes.root}>
+        <Box className={classes.root + " capture-range"}>
+          <ExportToImg />
           {bigFive}
           <SchemaProfile
             schemaCount={
