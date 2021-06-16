@@ -10,71 +10,71 @@ import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  header: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginTop: theme.spacing(6),
-    marginBottom: theme.spacing(1.5),
-  },
-  title: {
-    display: "flex",
-    alignItems: "center",
-  },
-  titleCell: {
-    fontWeight: "bold",
-    whiteSpace: "nowrap",
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: "rotate(180deg)",
-  },
+    header: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginTop: theme.spacing(6),
+        marginBottom: theme.spacing(1.5),
+    },
+    title: {
+        display: "flex",
+        alignItems: "center",
+    },
+    titleCell: {
+        fontWeight: "bold",
+        whiteSpace: "nowrap",
+    },
+    expand: {
+        transform: "rotate(0deg)",
+        marginLeft: "auto",
+        transition: theme.transitions.create("transform", {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: "rotate(180deg)",
+    },
 }));
 
 function CollapseContent({ title, icon, content }) {
-  const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+    const classes = useStyles();
+    const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
 
-  return (
-    <Fragment>
-      <Box className={classes.header}>
-        <Box className={classes.title}>
-          {icon}
-          <Typography variant="h6">{title}</Typography>
-        </Box>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </Box>
+    return (
+        <Fragment>
+            <Box className={classes.header}>
+                <Box className={classes.title}>
+                    {icon}
+                    <Typography variant="h6">{title}</Typography>
+                </Box>
+                <IconButton
+                    className={clsx(classes.expand, {
+                        [classes.expandOpen]: expanded,
+                    })}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="show more"
+                >
+                    <ExpandMoreIcon />
+                </IconButton>
+            </Box>
 
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        {content}
-      </Collapse>
-    </Fragment>
-  );
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                {content}
+            </Collapse>
+        </Fragment>
+    );
 }
 
 CollapseContent.propTypes = {
-  title: PropTypes.string.isRequired,
-  content: PropTypes.node.isRequired,
-  icon: PropTypes.node.isRequired,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.node.isRequired,
+    icon: PropTypes.node.isRequired,
 };
 
 export default CollapseContent;

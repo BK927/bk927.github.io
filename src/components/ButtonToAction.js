@@ -28,13 +28,11 @@ const useStyles = makeStyles((theme) => ({
       transition: "all 0.3s ease-out",
     },
   },
-  title:{
-    wordBreak:"keep-all",
+  title: {
+    wordBreak: "keep-all",
   },
   button: {
     "&&": {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.text.primary,
       padding: theme.spacing(1.6),
       fontWeight: "600",
       fontSize: "1.2rem",
@@ -42,13 +40,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-function ButtonToAction({ title, buttonText, startIcon, inputType, onChange, onClick }) {
+function ButtonToAction({
+  title,
+  buttonText,
+  startIcon,
+  inputType,
+  onChange,
+  onClick,
+}) {
   const classes = useStyles();
 
   return (
     <Box className={classes.root}>
-      <Typography className={classes.title} variant="h4">{title}</Typography>
+      <Typography className={classes.title} variant="h4">
+        {title}
+      </Typography>
       <Box>
         <input
           accept=".txt"
@@ -59,7 +65,13 @@ function ButtonToAction({ title, buttonText, startIcon, inputType, onChange, onC
           onClick={onClick}
         />
         <label htmlFor="bta-button">
-          <Button startIcon={startIcon} className={classes.button} component="span">
+          <Button
+            startIcon={startIcon}
+            color="primary"
+            className={classes.button}
+            component="span"
+            variant="contained"
+          >
             {buttonText}
           </Button>
         </label>

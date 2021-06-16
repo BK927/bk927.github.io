@@ -1476,10 +1476,10 @@
     react-is "^16.8.0 || ^17.0.0"
     react-transition-group "^4.4.0"
 
-"@material-ui/icons@^4.11.2":
-  version "4.11.2"
-  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-4.11.2.tgz#b3a7353266519cd743b6461ae9fdfcb1b25eb4c5"
-  integrity sha512-fQNsKX2TxBmqIGJCSi3tGTO/gZ+eJgWmMJkgDiOfyNaunNaxcklJQFaFogYcFl0qFuaEz1qaXYXboa/bUXVSOQ==
+"@material-ui/icons@^5.0.0-alpha.36":
+  version "5.0.0-alpha.36"
+  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-5.0.0-alpha.36.tgz#8bc72df8d794875237699c31ce8656c3955bac43"
+  integrity sha512-0nd1MTmgTyx+9lFV1PusbA7/Ow19aL83wsEIpHeAsT5q9Vuz7uS5erwV4YK7vzUj3Dinc5ggx7Wpjtv+2qJCnQ==
   dependencies:
     "@babel/runtime" "^7.4.4"
 
@@ -9957,6 +9957,11 @@ react-snap@^1.23.0:
     puppeteer "^1.8.0"
     serve-static "1.13.2"
     sourcemapped-stacktrace-node "2.1.8"
+
+react-tiny-fab@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/react-tiny-fab/-/react-tiny-fab-4.0.3.tgz#99c71f58a2567e25997c49baa22178652eaa868e"
+  integrity sha512-H+tHPM1bO3iTN8ZDoyq1r0ui8jKslWpkTf3OePztcD8vLvr9QzZqmEoCfXVZEHZEv2GlU06coAe/wjMEEH1sBA==
 
 react-transition-group@^4.4.0:
   version "4.4.1"
