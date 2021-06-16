@@ -15,7 +15,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => {
     const gap = theme.spacing(3);
-    console.log(gap);
     return {
         root: {
             display: "flex",

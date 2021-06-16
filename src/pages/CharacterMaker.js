@@ -31,7 +31,6 @@ const CharacterMaker = ({ title }) => {
     const [charaState, charaDispatch] = useReducer(charaReducer, initialCharacter);
 
     const charaLevel = useRef(2);
-    const schemaCount = getRandomInt(charaLevel.current + 1) + (charaLevel.current * 2 - 2);
 
     const generatePersonality = () => {
         ReactGA.event({
@@ -63,6 +62,7 @@ const CharacterMaker = ({ title }) => {
     };
 
     const generateSchema = () => {
+        const schemaCount = getRandomInt(charaLevel.current + 1) + (charaLevel.current * 2 - 2);
         const singleSchemaList = [];
         const combinedSchemaList = [];
         const randomIndices = randIntPermution(0, UnconditinalScehma.length);
