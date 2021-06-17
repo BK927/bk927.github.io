@@ -3,7 +3,7 @@ import React from "react";
 export const initialCharacter = {
     //[...[...facet scores]]
     bigfiveScores: [],
-    //[conditionalSchema: {index, copingStyles:[..key]}, unconditionalSchema: {index, copingStyles:[..key]},]
+    //[...{conditionalSchema: {index, copingStyles:[..key]} or null, unconditionalSchema: {index, copingStyles:[..key]}}]
     schemaIndices: [],
 };
 

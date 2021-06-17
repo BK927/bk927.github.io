@@ -4,9 +4,9 @@ import React, { Fragment, useReducer, useRef, useState } from "react";
 import BigFive from "asset/BigFive";
 import { Box } from "@material-ui/core";
 import ButtonToAction from "components/ButtonToAction";
+import CharacterFab from "components/ChracterMaker/CharacterFab";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ConditionalSchema from "asset/ConditionalSchema";
-import ExportingFab from "components/ChracterMaker/ExportingFab";
 import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
 import ReactGA from "react-ga";
 import ReactHelmet from "components/ReactHelmet";
@@ -32,7 +32,7 @@ const CharacterMaker = ({ title }) => {
 
     const charaLevel = useRef(2);
 
-    const generatePersonality = () => {
+    const generateRandomPersonality = () => {
         ReactGA.event({
             category: "캐릭터 성격 생성",
             action: "Clicked",
@@ -40,11 +40,11 @@ const CharacterMaker = ({ title }) => {
         });
 
         setIsGenerated(true);
-        generateSchema();
-        generateBigfive();
+        generateRandomSchema();
+        generateRandomBigfive();
     };
 
-    const generateBigfive = () => {
+    const generateRandomBigfive = () => {
         const bigfiveScores = [];
         const domainList = [...BigFive];
         domainList.forEach((domain, i) => {
@@ -61,7 +61,7 @@ const CharacterMaker = ({ title }) => {
         });
     };
 
-    const generateSchema = () => {
+    const generateRandomSchema = () => {
         const schemaCount = getRandomInt(charaLevel.current + 1) + (charaLevel.current * 2 - 2);
         const singleSchemaList = [];
         const combinedSchemaList = [];
@@ -121,14 +121,33 @@ const CharacterMaker = ({ title }) => {
         return <PersonalityDetail key={index} domain={data.domain} domainDescription={data.description} personBehaviors={data.behavior} facets={facets} />;
     });
 
+    const onCodeLoad = (characterStat) => {
+        charaDispatch({
+            type: "SET_BIGFIVE_SCORES",
+            bigfiveScores: characterStat.bigfiveScores,
+        });
+        charaDispatch({
+            type: "SET_SCHEMA_INDICES",
+            schemaIndices: characterStat.schemaIndices,
+        });
+        setIsGenerated(true);
+    };
+
     return (
-        <Fragment>
+        <CharacterContext.Provider value={charaState}>
             <ReactHelmet
                 title="캐릭터 성격 생성기"
                 description="시나리오 라이팅, 드라마, 영화, 웹소설 쓰기에 도움이 되는 캐릭터 성격 생성기입니다. 가장 권위 있는 심리검사 IPIP-NEO와 심리도식을 기반으로 입체적인 성격을 생성합니다."
                 keywords="웹소설 캐릭터 만들기,웹소설 쓰기 어플,웹소설 쓰기,소설 쓰는법,웹소설 쓰는법,시나리오 쓰는법"
             />
-            <ButtonToAction title="버튼을 누르면 새로운 캐릭터 프로필을 만들 수 있습니다" buttonText="생성하기" onClick={generatePersonality} startIcon={<CheckCircleIcon />} inputType="button" />
+            <CharacterFab isCharaRendered={isGenerated} onCodeLoad={onCodeLoad} />
+            <ButtonToAction
+                title="버튼을 누르면 새로운 캐릭터 프로필을 만들 수 있습니다"
+                buttonText="생성하기"
+                onClick={generateRandomPersonality}
+                startIcon={<CheckCircleIcon />}
+                inputType="button"
+            />
 
             <SchemaSlider
                 onChange={(e, value) => {
@@ -144,17 +163,14 @@ const CharacterMaker = ({ title }) => {
                 }}
             />
             {isGenerated ? (
-                <CharacterContext.Provider value={charaState}>
-                    <Box className={classes.root + " capture-range"}>
-                        <ExportingFab />
-                        {bigFiveComponents}
-                        <SchemaProfile />
-                    </Box>
-                </CharacterContext.Provider>
+                <Box className={classes.root + " capture-range"}>
+                    {bigFiveComponents}
+                    <SchemaProfile />
+                </Box>
             ) : (
                 <Fragment />
             )}
-        </Fragment>
+        </CharacterContext.Provider>
     );
 };
 
