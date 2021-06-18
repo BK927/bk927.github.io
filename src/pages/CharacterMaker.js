@@ -3,9 +3,8 @@ import React, { Fragment, useReducer, useRef, useState } from "react";
 
 import BigFive from "asset/BigFive";
 import { Box } from "@material-ui/core";
-import ButtonToAction from "components/ButtonToAction";
+import ButtonToAction from "components/ChracterMaker/ButtonToAction";
 import CharacterFab from "components/ChracterMaker/CharacterFab";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ConditionalSchema from "asset/ConditionalSchema";
 import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
 import ReactGA from "react-ga";
@@ -143,10 +142,24 @@ const CharacterMaker = ({ title }) => {
             <CharacterFab isCharaRendered={isGenerated} onCodeLoad={onCodeLoad} />
             <ButtonToAction
                 title="버튼을 누르면 새로운 캐릭터 프로필을 만들 수 있습니다"
-                buttonText="생성하기"
-                onClick={generateRandomPersonality}
-                startIcon={<CheckCircleIcon />}
-                inputType="button"
+                isGenerated={isGenerated}
+                generateNew={generateRandomPersonality}
+                generateBigfive={() => {
+                    ReactGA.event({
+                        category: "캐릭터 성격 생성",
+                        action: "Clicked",
+                        label: "빅파이브만 재생성",
+                    });
+                    generateRandomBigfive();
+                }}
+                generateSchema={() => {
+                    ReactGA.event({
+                        category: "캐릭터 성격 생성",
+                        action: "Clicked",
+                        label: "심리도식만 재생성",
+                    });
+                    generateRandomSchema();
+                }}
             />
 
             <SchemaSlider
