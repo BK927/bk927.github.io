@@ -1,8 +1,8 @@
 import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
 import Collapse from "@material-ui/core/Collapse";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Fragment } from "react";
-import IconButton from "@material-ui/core/IconButton";
 import PropTypes from "prop-types";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "space-between",
         marginTop: theme.spacing(6),
         marginBottom: theme.spacing(1.5),
+        width: "100%",
     },
     title: {
         display: "flex",
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 function CollapseContent({ title, icon, content }) {
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = React.useState(true);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -47,23 +48,17 @@ function CollapseContent({ title, icon, content }) {
 
     return (
         <Fragment>
-            <Box className={classes.header}>
+            <Button className={classes.header} onClick={handleExpandClick}>
                 <Box className={classes.title}>
                     {icon}
                     <Typography variant="h6">{title}</Typography>
                 </Box>
-                <IconButton
+                <ExpandMoreIcon
                     className={clsx(classes.expand, {
                         [classes.expandOpen]: expanded,
                     })}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                >
-                    <ExpandMoreIcon />
-                </IconButton>
-            </Box>
-
+                />
+            </Button>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 {content}
             </Collapse>

@@ -1,3 +1,5 @@
+import "react-tiny-fab/dist/styles.css";
+
 import { Action, Fab } from "react-tiny-fab";
 import React, { Fragment, useContext, useRef, useState } from "react";
 
