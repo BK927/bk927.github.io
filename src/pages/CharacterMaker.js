@@ -1,7 +1,10 @@
 import { CharacterContext, charaReducer, initialCharacter } from "context/CharacterContext";
 import React, { Fragment, useReducer, useRef, useState } from "react";
 
+import AssignmentIcon from "@material-ui/icons/Assignment";
 import BigFive from "asset/BigFive";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import { Box } from "@material-ui/core";
 import ButtonToAction from "components/ChracterMaker/ButtonToAction";
 import CharacterFab from "components/ChracterMaker/CharacterFab";
@@ -9,6 +12,7 @@ import ConditionalSchema from "asset/ConditionalSchema";
 import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
 import ReactGA from "react-ga";
 import ReactHelmet from "components/ReactHelmet";
+import RecentActorsIcon from "@material-ui/icons/RecentActors";
 import SchemaCopingStyle from "asset/SchemaCopingStyle";
 import SchemaProfile from "components/ChracterMaker/SchemaProfile";
 import SchemaSlider from "components/ChracterMaker/SchemaSlider";
@@ -21,12 +25,20 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
     },
+    navigation: {
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        width: "100vw",
+        zIndex: 3,
+    },
 }));
 
 const CharacterMaker = ({ title }) => {
     const classes = useStyles();
 
     const [isGenerated, setIsGenerated] = useState(false);
+    const [nav, setNav] = useState("빅파이브");
     const [charaState, charaDispatch] = useReducer(charaReducer, initialCharacter);
 
     const charaLevel = useRef(2);
@@ -132,6 +144,8 @@ const CharacterMaker = ({ title }) => {
         setIsGenerated(true);
     };
 
+    const resultScreen = nav === "빅파이브" ? bigFiveComponents : <SchemaProfile />;
+
     return (
         <CharacterContext.Provider value={charaState}>
             <ReactHelmet
@@ -176,10 +190,20 @@ const CharacterMaker = ({ title }) => {
                 }}
             />
             {isGenerated ? (
-                <Box className={classes.root + " capture-range"}>
-                    {bigFiveComponents}
-                    <SchemaProfile />
-                </Box>
+                <Fragment>
+                    <Box className={classes.root + " capture-range"}>{resultScreen}</Box>
+                    <BottomNavigation
+                        className={classes.navigation}
+                        value={nav}
+                        onChange={(event, newValue) => {
+                            setNav(newValue);
+                        }}
+                        showLabels
+                    >
+                        <BottomNavigationAction value={"빅파이브"} label="빅파이브" icon={<AssignmentIcon />} />
+                        <BottomNavigationAction value={"심리 도식"} label="심리 도식" icon={<RecentActorsIcon />} />
+                    </BottomNavigation>
+                </Fragment>
             ) : (
                 <Fragment />
             )}
