@@ -5,10 +5,12 @@ import Box from "@material-ui/core/Box";
 import ChipList from "components/ChracterMaker/ChipList";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FacetChart from "components/ChracterMaker/FacetChart";
+import IconButton from "@material-ui/core/IconButton";
 import InfoModal from "components/InfoModal";
 import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
 import React from "react";
+import ReplayIcon from "@material-ui/icons/Replay";
 import Typography from "@material-ui/core/Typography";
 import { evalBigFiveScore } from "util/BigFiveStandard.js";
 import { makeStyles } from "@material-ui/core/styles";
@@ -91,6 +93,9 @@ function PersonalityDetail({ domain, domainDescription, personBehaviors, facets 
                         </Typography>
                     ))}
                 />
+                {/* <IconButton component="span" onClick={null}>
+                    <ReplayIcon />
+                </IconButton> */}
             </Box>
             <FacetChart facets={facets} />
             <ChipList title="보일 수 있는 행동들" items={personBehaviors[domainEval]} />

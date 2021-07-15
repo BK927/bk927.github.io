@@ -170,7 +170,7 @@ const CharacterMaker = ({ title }) => {
                     ReactGA.event({
                         category: "캐릭터 성격 생성",
                         action: "Clicked",
-                        label: "심리도식만 재생성",
+                        label: "결함만 재생성",
                     });
                     generateRandomSchema();
                 }}
@@ -183,7 +183,7 @@ const CharacterMaker = ({ title }) => {
                             category: "캐릭터 성격 생성",
                             action: "Clicked",
                             value: value,
-                            label: "캐릭터 입체도 슬라이드",
+                            label: "캐릭터 결함 슬라이드",
                         });
                     }
                     charaLevel.current = value;
@@ -200,8 +200,8 @@ const CharacterMaker = ({ title }) => {
                         }}
                         showLabels
                     >
-                        <BottomNavigationAction value={"빅파이브"} label="빅파이브" icon={<AssignmentIcon />} />
-                        <BottomNavigationAction value={"심리 도식"} label="심리 도식" icon={<RecentActorsIcon />} />
+                        <BottomNavigationAction value={"빅파이브"} label="성격" icon={<AssignmentIcon />} />
+                        <BottomNavigationAction value={"심리 도식"} label="결함" icon={<RecentActorsIcon />} />
                     </BottomNavigation>
                 </Fragment>
             ) : (

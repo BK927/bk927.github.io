@@ -61,10 +61,10 @@ function ButtonToAction({ title, isGenerated, generateNew, generateBigfive, gene
                     <Fragment>
                         {" "}
                         <Button startIcon={<ReplayIcon />} onClick={generateBigfive} color="primary" className={classes.button} component="span" variant="contained">
-                            빅파이브만 재생성
+                            성격만 재생성
                         </Button>{" "}
                         <Button startIcon={<ReplayIcon />} onClick={generateSchema} color="primary" className={classes.button} component="span" variant="contained">
-                            심리도식만 재생성
+                            결함만 재생성
                         </Button>
                     </Fragment>
                 ) : (
