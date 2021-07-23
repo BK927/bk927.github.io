@@ -1,5 +1,4 @@
-import { CharacterContext, charaReducer, initialCharacter } from "context/CharacterContext";
-import React, { Fragment, useReducer, useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import BigFive from "asset/BigFive";
@@ -7,6 +6,7 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import { Box } from "@material-ui/core";
 import ButtonToAction from "components/ChracterMaker/ButtonToAction";
+import { CharacterContext } from "context/CharacterContext";
 import CharacterFab from "components/ChracterMaker/CharacterFab";
 import ConditionalSchema from "asset/ConditionalSchema";
 import PersonalityDetail from "components/ChracterMaker/PersonalityDetail";
@@ -39,9 +39,16 @@ const CharacterMaker = ({ title }) => {
 
     const [isGenerated, setIsGenerated] = useState(false);
     const [nav, setNav] = useState("빅파이브");
-    const [charaState, charaDispatch] = useReducer(charaReducer, initialCharacter);
+    const [bigfive, setBigfive] = useState([]);
+    const [schema, setSchema] = useState([]);
 
     const charaLevel = useRef(2);
+
+    const onCodeLoad = (characterStat) => {
+        setBigfive(characterStat.bigfiveScores);
+        setSchema(characterStat.schemaIndices);
+        setIsGenerated(true);
+    };
 
     const generateRandomPersonality = () => {
         ReactGA.event({
@@ -66,10 +73,7 @@ const CharacterMaker = ({ title }) => {
             bigfiveScores.push(facetList);
         });
 
-        charaDispatch({
-            type: "SET_BIGFIVE_SCORES",
-            bigfiveScores: bigfiveScores,
-        });
+        setBigfive(bigfiveScores);
     };
 
     const generateRandomSchema = () => {
@@ -117,13 +121,10 @@ const CharacterMaker = ({ title }) => {
             }
         }
 
-        charaDispatch({
-            type: "SET_SCHEMA_INDICES",
-            schemaIndices: combinedSchemaList.concat(singleSchemaList),
-        });
+        setSchema(combinedSchemaList.concat(singleSchemaList));
     };
 
-    const bigFiveComponents = charaState.bigfiveScores.map((facetScores, index) => {
+    const bigFiveComponents = bigfive.map((facetScores, index) => {
         const data = [...BigFive][index];
         const facets = data.facets.map((element, j) => {
             element["score"] = facetScores[j];
@@ -132,22 +133,10 @@ const CharacterMaker = ({ title }) => {
         return <PersonalityDetail key={index} domain={data.domain} domainDescription={data.description} personBehaviors={data.behavior} facets={facets} />;
     });
 
-    const onCodeLoad = (characterStat) => {
-        charaDispatch({
-            type: "SET_BIGFIVE_SCORES",
-            bigfiveScores: characterStat.bigfiveScores,
-        });
-        charaDispatch({
-            type: "SET_SCHEMA_INDICES",
-            schemaIndices: characterStat.schemaIndices,
-        });
-        setIsGenerated(true);
-    };
-
     const resultScreen = nav === "빅파이브" ? bigFiveComponents : <SchemaProfile />;
 
     return (
-        <CharacterContext.Provider value={charaState}>
+        <CharacterContext.Provider value={(bigfive, schema, setBigfive, setSchema)}>
             <ReactHelmet
                 title="캐릭터 성격 생성기"
                 description="시나리오 라이팅, 드라마, 영화, 웹소설 쓰기에 도움이 되는 캐릭터 성격 생성기입니다. 가장 권위 있는 심리검사 IPIP-NEO와 심리도식을 기반으로 입체적인 성격을 생성합니다."

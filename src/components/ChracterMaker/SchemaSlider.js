@@ -24,11 +24,11 @@ const useStyles = makeStyles((theme) => ({
 const marks = [
     {
         value: 1,
-        label: "매우 안정적 정서",
+        label: "매우 안정적",
     },
     {
         value: 2,
-        label: "약간 불안정하지만 정상",
+        label: "약간 불안정",
     },
     {
         value: 3,
@@ -43,7 +43,7 @@ function valuetext(value) {
 export default function SchemaSlider({ onChange }) {
     const classes = useStyles();
 
-    const modalTitle = "캐릭터의 결함";
+    const modalTitle = "캐릭터의 성격적 결함";
     const modalContent = (
         <Fragment>
             <Typography variant="body1" gutterBottom>
@@ -67,7 +67,7 @@ export default function SchemaSlider({ onChange }) {
         <div className={classes.root}>
             <Box className={classes.title}>
                 <Typography display="block" variant="h5">
-                    캐릭터의 결함
+                    캐릭터의 성격적 결함
                 </Typography>
                 <InfoModal title={modalTitle} content={modalContent} />
             </Box>

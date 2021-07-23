@@ -123,14 +123,14 @@ export default function CharacterFab({ onCodeLoad, isCharaRendered }) {
     const encode = (chracterObj) => {
         const mapCopingStyle = (key) => copingStyleMap[key];
 
-        const bigFiveCode = chracterObj.bigfiveScores
+        const bigFiveCode = chracterObj.bigfive
             .map((arr) => {
                 const numStr = arr.map((num) => fillZero(3, String(num))).join("");
                 return BigNumber(numStr).toString(36);
             })
             .join("&");
 
-        const schemaCode = chracterObj.schemaIndices
+        const schemaCode = chracterObj.schema
             .map((element) => {
                 const { conditionalSchema, unconditionalSchema } = element;
 

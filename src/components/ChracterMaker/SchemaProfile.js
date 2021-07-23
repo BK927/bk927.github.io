@@ -103,6 +103,7 @@ function SchemaProfile() {
                 return <CopingStyle key={i} count={i + 1} name={key} description={copingStyle.description} behaviors={copingStyle.behaviors} examples={examples} />;
             });
 
+            // 심리도식 개별 항목
             return (
                 <Box className={classes.wrapper}>
                     <Paper className={classes.item} elevation={2}>
@@ -189,7 +190,7 @@ function SchemaProfile() {
                 </Typography>
                 <InfoModal title={schemaModalTitle} content={schemaModalContent} />
             </Box>
-            <CharacterContext.Consumer>{(data) => data.schemaIndices.map((element) => CreateItem(element))}</CharacterContext.Consumer>
+            <CharacterContext.Consumer>{(data) => data.schema.map((element) => CreateItem(element))}</CharacterContext.Consumer>
         </Paper>
     );
 }
