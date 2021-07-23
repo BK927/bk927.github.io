@@ -66,14 +66,19 @@ const CharacterMaker = ({ title }) => {
         const bigfiveScores = [];
         const domainList = [...BigFive];
         domainList.forEach((domain, i) => {
-            const facetList = [];
-            domain.facets.forEach((facet, j) => {
-                facetList.push(getRandomInt(100));
-            });
-            bigfiveScores.push(facetList);
+            const randomFacets = generateRandomFacets(domain);
+            bigfiveScores.push(randomFacets);
         });
 
         setBigfive(bigfiveScores);
+    };
+
+    const generateRandomFacets = (domain) => {
+        const facetList = [];
+        domain.facets.forEach((facet, j) => {
+            facetList.push(getRandomInt(100));
+        });
+        return facetList;
     };
 
     const generateRandomSchema = () => {
@@ -130,7 +135,23 @@ const CharacterMaker = ({ title }) => {
             element["score"] = facetScores[j];
             return element;
         });
-        return <PersonalityDetail key={index} domain={data.domain} domainDescription={data.description} personBehaviors={data.behavior} facets={facets} />;
+        return (
+            <PersonalityDetail
+                key={index}
+                domain={data.domain}
+                domainDescription={data.description}
+                personBehaviors={data.behavior}
+                facets={facets}
+                onReload={() => {
+                    const bigfiveScores = [...bigfive];
+                    const domainList = [...BigFive];
+                    const randomFacets = generateRandomFacets(domainList[index]);
+                    bigfiveScores[index] = randomFacets;
+
+                    setBigfive(bigfiveScores);
+                }}
+            />
+        );
     });
 
     const resultScreen = nav === "빅파이브" ? bigFiveComponents : <SchemaProfile />;

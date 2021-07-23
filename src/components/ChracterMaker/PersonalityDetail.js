@@ -1,16 +1,17 @@
+import React, { useContext } from "react";
+
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Box from "@material-ui/core/Box";
+import { CharacterContext } from "context/CharacterContext";
 import ChipList from "components/ChracterMaker/ChipList";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FacetChart from "components/ChracterMaker/FacetChart";
 import IconButton from "@material-ui/core/IconButton";
 import InfoModal from "components/InfoModal";
-import { CharacterContext } from "context/CharacterContext";
 import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
 import ReplayIcon from "@material-ui/icons/Replay";
 import Typography from "@material-ui/core/Typography";
 import { evalBigFiveScore } from "util/BigFiveStandard.js";
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function PersonalityDetail({ domain, domainDescription, personBehaviors, facets }) {
+function PersonalityDetail({ domain, domainDescription, personBehaviors, facets, onReload }) {
     const classes = useStyles();
     const context = useContext(CharacterContext);
 
@@ -95,7 +96,7 @@ function PersonalityDetail({ domain, domainDescription, personBehaviors, facets 
                         </Typography>
                     ))}
                 />
-                <IconButton component="span" onClick={(e) => {}}>
+                <IconButton component="span" onClick={onReload}>
                     <ReplayIcon />
                 </IconButton>
             </Box>
