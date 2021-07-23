@@ -166,21 +166,24 @@ export default function CharacterFab({ onCodeLoad, isCharaRendered }) {
             return chunks.map((facetScoreStr) => parseInt(facetScoreStr));
         });
 
-        const schemaIndices = schemaCode.split("&").map((schemaChunk) => {
-            const codeArray = schemaChunk.split("@");
-            const [uncondCode, condCode] = codeArray.map((encoded) => {
-                if (encoded === "-1") {
-                    return null;
-                }
-                const [indexStr, copingStylesCode] = encoded.split("%");
+        let schemaIndices = [];
+        if (schemaCode.length > 1) {
+            schemaIndices = schemaCode.split("&").map((schemaChunk) => {
+                const codeArray = schemaChunk.split("@");
+                const [uncondCode, condCode] = codeArray.map((encoded) => {
+                    if (encoded === "-1") {
+                        return null;
+                    }
+                    const [indexStr, copingStylesCode] = encoded.split("%");
 
-                return { index: parseInt(indexStr), copingStyles: Array.from(copingStylesCode).map((value) => copingStyleMap[value]) };
+                    return { index: parseInt(indexStr), copingStyles: Array.from(copingStylesCode).map((value) => copingStyleMap[value]) };
+                });
+                return {
+                    unconditionalSchema: uncondCode,
+                    conditionalSchema: condCode,
+                };
             });
-            return {
-                unconditionalSchema: uncondCode,
-                conditionalSchema: condCode,
-            };
-        });
+        }
 
         return { bigfiveScores: bigfiveScores, schemaIndices: schemaIndices };
     };
