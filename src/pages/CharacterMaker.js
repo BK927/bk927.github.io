@@ -136,7 +136,7 @@ const CharacterMaker = ({ title }) => {
     const resultScreen = nav === "빅파이브" ? bigFiveComponents : <SchemaProfile />;
 
     return (
-        <CharacterContext.Provider value={(bigfive, schema, setBigfive, setSchema)}>
+        <CharacterContext.Provider value={{ bigfive, schema, setBigfive, setSchema }}>
             <ReactHelmet
                 title="캐릭터 성격 생성기"
                 description="시나리오 라이팅, 드라마, 영화, 웹소설 쓰기에 도움이 되는 캐릭터 성격 생성기입니다. 가장 권위 있는 심리검사 IPIP-NEO와 심리도식을 기반으로 입체적인 성격을 생성합니다."

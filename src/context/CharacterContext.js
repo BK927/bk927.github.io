@@ -6,6 +6,6 @@ export const CharacterContext = React.createContext({
     bigfive: [],
     //[...{conditionalSchema: {index, copingStyles:[..key]} or null, unconditionalSchema: {index, copingStyles:[..key]}}]
     schema: [],
-    setBigfive: {},
-    setSchema: {},
+    setBigfive: (bigfive) => {},
+    setSchema: (schema) => {},
 });

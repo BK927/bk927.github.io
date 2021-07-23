@@ -1,3 +1,5 @@
+import React, { useContext } from "react";
+
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import Box from "@material-ui/core/Box";
 import { CharacterContext } from "context/CharacterContext";
@@ -6,7 +8,6 @@ import CopingStyle from "components/ChracterMaker/CopingStyle";
 import { Fragment } from "react";
 import InfoModal from "components/InfoModal";
 import Paper from "@material-ui/core/Paper";
-import React from "react";
 import SchemaAndDomain from "components/ChracterMaker/SchemaAndDomain";
 import SchemaCopingStyle from "asset/SchemaCopingStyle";
 import Typography from "@material-ui/core/Typography";
@@ -84,6 +85,7 @@ const useStyles = makeStyles((theme) => {
 
 function SchemaProfile() {
     const classes = useStyles();
+    const context = useContext(CharacterContext);
 
     const CreateItem = (data) => {
         const conditionalFlag = data.conditionalSchema ? true : false;
@@ -190,7 +192,7 @@ function SchemaProfile() {
                 </Typography>
                 <InfoModal title={schemaModalTitle} content={schemaModalContent} />
             </Box>
-            <CharacterContext.Consumer>{(data) => data.schema.map((element) => CreateItem(element))}</CharacterContext.Consumer>
+            {context.schema.map((element) => CreateItem(element))}
         </Paper>
     );
 }
