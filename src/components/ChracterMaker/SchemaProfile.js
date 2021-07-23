@@ -66,10 +66,12 @@ const useStyles = makeStyles((theme) => {
         item: {
             padding: theme.spacing(1.3),
             backgroundColor: theme.palette.background.dp02,
+            position: "relative",
         },
         iconWrapper: {
             position: "relative",
             margin: theme.spacing(0),
+            zIndex: "2",
         },
         plusIconButton: {
             position: "absolute",
@@ -87,7 +89,7 @@ function SchemaProfile() {
     const classes = useStyles();
     const context = useContext(CharacterContext);
 
-    const CreateItem = (data) => {
+    const CreateItem = (data, indexInContext) => {
         const conditionalFlag = data.conditionalSchema ? true : false;
 
         const uncond = UnconditinalScehma[data.unconditionalSchema.index];
@@ -107,9 +109,16 @@ function SchemaProfile() {
 
             // 심리도식 개별 항목
             return (
-                <Box className={classes.wrapper}>
+                <Box key={indexInContext} className={classes.wrapper}>
                     <Paper className={classes.item} elevation={2}>
-                        <SchemaAndDomain schema={uncond.schema} description={uncond.description} behaviors={uncond.behaviors} backgrounds={uncond.backgrounds} domain={uncond.domain} />
+                        <SchemaAndDomain
+                            index={indexInContext}
+                            schema={uncond.schema}
+                            description={uncond.description}
+                            behaviors={uncond.behaviors}
+                            backgrounds={uncond.backgrounds}
+                            domain={uncond.domain}
+                        />
                         {uncondCoping}
                     </Paper>
                     <div className={classes.iconWrapper}>
@@ -118,7 +127,7 @@ function SchemaProfile() {
                         </div>
                     </div>
                     <Paper className={classes.item} elevation={2}>
-                        <SchemaAndDomain schema={cond.schema} description={cond.description} behaviors={cond.behaviors} backgrounds={cond.backgrounds} domain={cond.domain} />
+                        <SchemaAndDomain index={indexInContext} schema={cond.schema} description={cond.description} behaviors={cond.behaviors} backgrounds={cond.backgrounds} domain={cond.domain} />
                         {condCoping}
                     </Paper>
                 </Box>
@@ -126,9 +135,16 @@ function SchemaProfile() {
         }
 
         return (
-            <Box className={classes.singleWrapper}>
+            <Box key={indexInContext} className={classes.singleWrapper}>
                 <Paper className={classes.item} elevation={2}>
-                    <SchemaAndDomain schema={uncond.schema} description={uncond.description} behaviors={uncond.behaviors} backgrounds={uncond.backgrounds} domain={uncond.domain} />
+                    <SchemaAndDomain
+                        index={indexInContext}
+                        schema={uncond.schema}
+                        description={uncond.description}
+                        behaviors={uncond.behaviors}
+                        backgrounds={uncond.backgrounds}
+                        domain={uncond.domain}
+                    />
                     {uncondCoping}
                 </Paper>
             </Box>
@@ -192,7 +208,7 @@ function SchemaProfile() {
                 </Typography>
                 <InfoModal title={schemaModalTitle} content={schemaModalContent} />
             </Box>
-            {context.schema.map((element) => CreateItem(element))}
+            {context.schema.map((element, index) => CreateItem(element, index))}
         </Paper>
     );
 }
