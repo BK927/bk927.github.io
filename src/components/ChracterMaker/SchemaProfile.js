@@ -1,10 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import AddSchemaDialogue from "components/ChracterMaker/AddSchemaDialogue";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
 import { CharacterContext } from "context/CharacterContext";
 import ConditionalSchema from "asset/ConditionalSchema";
 import CopingStyle from "components/ChracterMaker/CopingStyle";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
 import { Fragment } from "react";
 import InfoModal from "components/InfoModal";
 import Paper from "@material-ui/core/Paper";
@@ -12,6 +19,7 @@ import SchemaAndDomain from "components/ChracterMaker/SchemaAndDomain";
 import SchemaCopingStyle from "asset/SchemaCopingStyle";
 import Typography from "@material-ui/core/Typography";
 import UnconditinalScehma from "asset/UnconditinalScehma";
+import getRandomInt from "util/getRandomInt";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => {
@@ -82,13 +90,37 @@ const useStyles = makeStyles((theme) => {
                 transform: "rotate(90deg) translate(-50%, 50%)",
             },
         },
+        addPanel: {
+            display: "flex",
+            justifyContent: "center",
+            padding: theme.spacing(5),
+            width: "100%",
+        },
+        addDialogue: {
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+        },
     };
 });
 
 function SchemaProfile() {
     const classes = useStyles();
     const context = useContext(CharacterContext);
+    const [openDialogue, setOpenDialogue] = useState(false);
+    const [addWarning, setAddWarning] = useState(false);
+    const checkedUnconditional = useRef(-1);
+    const checkedConditional = useRef(-1);
 
+    const handleClickOpenDialogue = () => {
+        setOpenDialogue(true);
+    };
+
+    const handleCloseDialogue = () => {
+        setAddWarning(false);
+        setOpenDialogue(false);
+        checkedUnconditional.current = -1;
+        checkedConditional.current = -1;
+    };
     const CreateItem = (data, indexInContext) => {
         const conditionalFlag = data.conditionalSchema ? true : false;
 
@@ -209,8 +241,66 @@ function SchemaProfile() {
                 <InfoModal title={schemaModalTitle} content={schemaModalContent} />
             </Box>
             {context.schema.map((element, index) => CreateItem(element, index))}
+            <Box className={classes.addPanel}>
+                <Button variant="text" startIcon={<AddBoxIcon />} size="large" onClick={handleClickOpenDialogue}>
+                    추가하기
+                </Button>
+            </Box>
+
+            <Dialog open={openDialogue} onClose={handleCloseDialogue}>
+                <DialogTitle>심리도식 추가하기</DialogTitle>
+                <DialogContent>
+                    {addWarning ? <Typography color="primary">무조건 도식은 반드시 선택하셔야 합니다.</Typography> : <></>}
+                    <Box className={classes.addDialogue}>
+                        <AddSchemaDialogue variant="Unconditional" sendValue={(value) => (checkedUnconditional.current = value)} />
+                        <AddSchemaDialogue variant="Conditional" sendValue={(value) => (checkedConditional.current = value)} />
+                    </Box>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseDialogue}>취소</Button>
+                    <Button
+                        autoFocus
+                        onClick={() => {
+                            console.log(checkedUnconditional.current);
+                            if (checkedUnconditional.current === -1) {
+                                setAddWarning(true);
+                            } else {
+                                const newSchema =
+                                    checkedConditional.current === -1
+                                        ? { unconditionalSchema: { index: checkedUnconditional.current, copingStyles: randCopingStyle() } }
+                                        : {
+                                              unconditionalSchema: { index: checkedUnconditional.current, copingStyles: randCopingStyle() },
+                                              conditionalSchema: { index: checkedUnconditional.current, copingStyles: randCopingStyle() },
+                                          };
+                                const newSchemas = [...context.schema, newSchema];
+                                context.setSchema(newSchemas);
+                                handleCloseDialogue();
+                            }
+                        }}
+                    >
+                        추가
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Paper>
     );
 }
+
+// TODO: refactor dupliacted code
+const randCopingStyle = () => {
+    let leftCopingStyle = Object.getOwnPropertyNames(SchemaCopingStyle);
+    const result = [];
+    const count = getRandomInt(2) + 1;
+
+    for (let i = 0; i < count; i++) {
+        const index = getRandomInt(leftCopingStyle.length);
+        const key = leftCopingStyle[index];
+        result.push(key);
+        leftCopingStyle = leftCopingStyle.filter(function (value, index, arr) {
+            return value !== key;
+        });
+    }
+    return result;
+};
 
 export default SchemaProfile;
