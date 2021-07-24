@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 
 import AddBoxIcon from "@material-ui/icons/AddBox";
+import AddCopingStyleDialogue from "components/ChracterMaker/AddCopingStyleDialogue";
 import AddSchemaDialogue from "components/ChracterMaker/AddSchemaDialogue";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import Box from "@material-ui/core/Box";
@@ -19,7 +20,6 @@ import SchemaAndDomain from "components/ChracterMaker/SchemaAndDomain";
 import SchemaCopingStyle from "asset/SchemaCopingStyle";
 import Typography from "@material-ui/core/Typography";
 import UnconditinalScehma from "asset/UnconditinalScehma";
-import getRandomInt from "util/getRandomInt";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => {
@@ -109,7 +109,9 @@ function SchemaProfile() {
     const [openDialogue, setOpenDialogue] = useState(false);
     const [addWarning, setAddWarning] = useState(false);
     const [checkedUnconditional, setCheckedUnconditional] = useState(-1);
-    const checkedConditional = useRef(-1);
+    const [checkedConditional, setCheckedConditional] = useState(-1);
+    const addUnconditionalCS = useRef(["굴복(얼어붙기)"]);
+    const addConditionalCS = useRef(["굴복(얼어붙기)"]);
 
     const handleClickOpenDialogue = () => {
         setOpenDialogue(true);
@@ -119,7 +121,9 @@ function SchemaProfile() {
         setAddWarning(false);
         setOpenDialogue(false);
         setCheckedUnconditional(-1);
-        checkedConditional.current = -1;
+        setCheckedConditional(-1);
+        addUnconditionalCS.current = ["굴복(얼어붙기)"];
+        addConditionalCS.current = ["굴복(얼어붙기)"];
     };
     const CreateItem = (data, indexInContext) => {
         const conditionalFlag = data.conditionalSchema ? true : false;
@@ -252,8 +256,14 @@ function SchemaProfile() {
                 <DialogContent>
                     {addWarning ? <Typography color="error">무조건 도식은 반드시 선택하셔야 합니다.</Typography> : <></>}
                     <Box className={classes.addDialogue}>
-                        <AddSchemaDialogue variant="Unconditional" sendValue={(value) => setCheckedUnconditional(value)} />
-                        <AddSchemaDialogue disabled={checkedUnconditional === -1} variant="Conditional" sendValue={(value) => (checkedConditional.current = value)} />
+                        <Box>
+                            <AddCopingStyleDialogue disabled={checkedUnconditional === -1} sendValue={(value) => (addUnconditionalCS.current = value)} />
+                            <AddSchemaDialogue variant="Unconditional" sendValue={(value) => setCheckedUnconditional(value)} />
+                        </Box>
+                        <Box>
+                            <AddCopingStyleDialogue disabled={checkedUnconditional === -1 || checkedConditional === -1} sendValue={(value) => (addConditionalCS.current = value)} />
+                            <AddSchemaDialogue disabled={checkedUnconditional === -1} variant="Conditional" sendValue={(value) => setCheckedConditional(value)} />
+                        </Box>
                     </Box>
                 </DialogContent>
                 <DialogActions>
@@ -265,11 +275,11 @@ function SchemaProfile() {
                                 setAddWarning(true);
                             } else {
                                 const newSchema =
-                                    checkedConditional.current === -1
-                                        ? { unconditionalSchema: { index: checkedUnconditional, copingStyles: randCopingStyle() } }
+                                    checkedConditional === -1
+                                        ? { unconditionalSchema: { index: checkedUnconditional, copingStyles: addUnconditionalCS.current } }
                                         : {
-                                              unconditionalSchema: { index: checkedUnconditional, copingStyles: randCopingStyle() },
-                                              conditionalSchema: { index: checkedConditional.current, copingStyles: randCopingStyle() },
+                                              unconditionalSchema: { index: checkedUnconditional, copingStyles: addUnconditionalCS.current },
+                                              conditionalSchema: { index: checkedConditional, copingStyles: addConditionalCS.current },
                                           };
                                 const newSchemas = [...context.schema, newSchema];
                                 context.setSchema(newSchemas);
@@ -284,22 +294,5 @@ function SchemaProfile() {
         </Paper>
     );
 }
-
-// TODO: remove dupliacted code
-const randCopingStyle = () => {
-    let leftCopingStyle = Object.getOwnPropertyNames(SchemaCopingStyle);
-    const result = [];
-    const count = getRandomInt(2) + 1;
-
-    for (let i = 0; i < count; i++) {
-        const index = getRandomInt(leftCopingStyle.length);
-        const key = leftCopingStyle[index];
-        result.push(key);
-        leftCopingStyle = leftCopingStyle.filter(function (value, index, arr) {
-            return value !== key;
-        });
-    }
-    return result;
-};
 
 export default SchemaProfile;
