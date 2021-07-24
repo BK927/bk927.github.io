@@ -261,16 +261,15 @@ function SchemaProfile() {
                     <Button
                         autoFocus
                         onClick={() => {
-                            console.log(checkedUnconditional.current);
                             if (checkedUnconditional === -1) {
                                 setAddWarning(true);
                             } else {
                                 const newSchema =
                                     checkedConditional.current === -1
-                                        ? { unconditionalSchema: { index: checkedUnconditional.current, copingStyles: randCopingStyle() } }
+                                        ? { unconditionalSchema: { index: checkedUnconditional, copingStyles: randCopingStyle() } }
                                         : {
-                                              unconditionalSchema: { index: checkedUnconditional.current, copingStyles: randCopingStyle() },
-                                              conditionalSchema: { index: checkedUnconditional.current, copingStyles: randCopingStyle() },
+                                              unconditionalSchema: { index: checkedUnconditional, copingStyles: randCopingStyle() },
+                                              conditionalSchema: { index: checkedConditional.current, copingStyles: randCopingStyle() },
                                           };
                                 const newSchemas = [...context.schema, newSchema];
                                 context.setSchema(newSchemas);
