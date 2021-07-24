@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import UnconditinalScehma from "asset/UnconditinalScehma";
 
 // variant mustbe 'Unconditional' or ''Conditional'
-function AddSchemaDialogue({ variant, sendValue }) {
+function AddSchemaDialogue({ variant, sendValue, disabled }) {
     const [checked, setChecked] = React.useState(null);
 
     const schemas = variant === "Unconditional" ? UnconditinalScehma : ConditionalSchema;
@@ -28,13 +28,15 @@ function AddSchemaDialogue({ variant, sendValue }) {
 
     return (
         <List className={null}>
-            <Typography variant="h6">{variant === "Unconditional" ? "무조건 도식" : "조건 도식"}</Typography>
+            <Typography color={disabled ? "textSecondary" : "inherit"} variant="h6">
+                {variant === "Unconditional" ? "무조건 도식" : "조건 도식"}
+            </Typography>
             {schemas.map((value) => {
                 const schemaName = value.schema;
                 const labelId = `checkbox-list-label-${schemaName}`;
 
                 return (
-                    <ListItem key={value} role={undefined} dense button onClick={handleToggle(value)}>
+                    <ListItem disabled={disabled} key={value} role={undefined} dense button onClick={handleToggle(value)}>
                         <ListItemIcon>
                             <Checkbox edge="start" checked={checked === value} tabIndex={-1} disableRipple inputProps={{ "aria-labelledby": labelId }} />
                         </ListItemIcon>
@@ -51,8 +53,10 @@ export default AddSchemaDialogue;
 AddSchemaDialogue.propTypes = {
     variant: PropTypes.string,
     sendValue: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
 };
 
 AddSchemaDialogue.defaultProps = {
     variant: "Unconditional",
+    disabled: false,
 };

@@ -108,7 +108,7 @@ function SchemaProfile() {
     const context = useContext(CharacterContext);
     const [openDialogue, setOpenDialogue] = useState(false);
     const [addWarning, setAddWarning] = useState(false);
-    const checkedUnconditional = useRef(-1);
+    const [checkedUnconditional, setCheckedUnconditional] = useState(-1);
     const checkedConditional = useRef(-1);
 
     const handleClickOpenDialogue = () => {
@@ -118,7 +118,7 @@ function SchemaProfile() {
     const handleCloseDialogue = () => {
         setAddWarning(false);
         setOpenDialogue(false);
-        checkedUnconditional.current = -1;
+        setCheckedUnconditional(-1);
         checkedConditional.current = -1;
     };
     const CreateItem = (data, indexInContext) => {
@@ -250,10 +250,10 @@ function SchemaProfile() {
             <Dialog open={openDialogue} onClose={handleCloseDialogue}>
                 <DialogTitle>심리도식 추가하기</DialogTitle>
                 <DialogContent>
-                    {addWarning ? <Typography color="primary">무조건 도식은 반드시 선택하셔야 합니다.</Typography> : <></>}
+                    {addWarning ? <Typography color="error">무조건 도식은 반드시 선택하셔야 합니다.</Typography> : <></>}
                     <Box className={classes.addDialogue}>
-                        <AddSchemaDialogue variant="Unconditional" sendValue={(value) => (checkedUnconditional.current = value)} />
-                        <AddSchemaDialogue variant="Conditional" sendValue={(value) => (checkedConditional.current = value)} />
+                        <AddSchemaDialogue variant="Unconditional" sendValue={(value) => setCheckedUnconditional(value)} />
+                        <AddSchemaDialogue disabled={checkedUnconditional === -1} variant="Conditional" sendValue={(value) => (checkedConditional.current = value)} />
                     </Box>
                 </DialogContent>
                 <DialogActions>
@@ -262,7 +262,7 @@ function SchemaProfile() {
                         autoFocus
                         onClick={() => {
                             console.log(checkedUnconditional.current);
-                            if (checkedUnconditional.current === -1) {
+                            if (checkedUnconditional === -1) {
                                 setAddWarning(true);
                             } else {
                                 const newSchema =
@@ -286,7 +286,7 @@ function SchemaProfile() {
     );
 }
 
-// TODO: refactor dupliacted code
+// TODO: remove dupliacted code
 const randCopingStyle = () => {
     let leftCopingStyle = Object.getOwnPropertyNames(SchemaCopingStyle);
     const result = [];
